@@ -1,0 +1,5 @@
+Django==1.8.4
+psycopg2==2.6.1
+Pillow==3.0.0
+-e git+ssh://git@github.com/vaquer/django-awesome-gallery.git#egg=django-awesome-gallery
+-e git+git://github.com/etianen/django-watson.git#egg=django-watson

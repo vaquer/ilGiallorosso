@@ -1,0 +1,46 @@
+body {font-family: 'Source Sans Pro', sans-serif;}
+header.header-site {position: fixed; top: 0; height: 0; height: 80px; width: 100%; background-color: #611620; z-index: 2000;}
+header.header-site .header-content .sitebar {height: 40px;}
+header.header-site .header-content .sitebar .bar-logo p {font-family: 'Russo One', sans-serif; padding: 0; margin: 0 auto; margin-top: 20px; color: #DABB1D; font-weight: bold; width: 200px; font-size: 25px;}
+header.header-site .header-content .nav {margin: 0; width: 100%; height: 20px; border: 1px solid #D8D8D8; background-color: #fff;}
+header.header-site .header-content .nav ul.menu {list-style: none; font-size: 14px; width: 940px; margin: 0 auto; background-color: #611620; text-transform: uppercase;}
+header.header-site .header-content .nav ul.menu li.menu-element {float: left; border-left: 1px solid #D8D8D8;  height: 20px; font-size: 14px !important; margin: 0; padding: 0;}
+header.header-site .header-content .nav ul.menu li.menu-element.last {border-right: 1px solid #D8D8D8;}
+header.header-site .header-content .nav ul.menu li.menu-element a {text-decoration: none !important; color: #A0A0A0; font-weight: bold !important; padding: 2px 30px !important; transition: background-color 0.3s , color 0.3s;}
+header.header-site .header-content .nav ul.menu li.menu-element a:hover {background-color: #A53241; color: #DABB1D;}
+
+main.content-site {width: 100%;}
+main.content-site .border {min-height: 45px; padding: 16px 0;}
+main.content-site .body-content {width: 1000px; margin: 0 auto; padding-left: 5px; padding-right: 5px;}
+
+
+.stats-side-bar{border-top: 10px solid #611620;}
+.stats-side-bar table { margin-top: 5px;}
+.stats-side-bar table thead tr th{border-bottom: 5px solid #D8D8D8;}
+.stats-side-bar table tbody tr{border-bottom: 1px solid #D8D8D8;}
+.stats-side-bar table tbody tr td{padding-top: 5px; padding-left: 3px;}
+
+.stats-side-bar table thead tr th.team{text-align: left; padding-left: 10px;}
+.stats-side-bar table tbody tr td.team{padding-left: 10px;}
+
+.stats-side-bar table thead tr th.mp{text-align: left; padding-left: 30px;}
+.stats-side-bar table tbody tr td.mp{padding-left: 30px;}
+
+.stats-side-bar table thead tr th.pts{text-align: left; padding-left: 30px;}
+.stats-side-bar table tbody tr td.pts{padding-left: 30px;}
+
+.stats-side-bar table tbody tr td.marker {width: 3px!important;}
+.stats-side-bar table tbody tr.champions td.marker { background-color: #008CFC;}
+.stats-side-bar table tbody tr.champions_preliminary td.marker { background-color: #86bbe5;}
+.stats-side-bar table tbody tr.uefa td.marker { background-color: #BB192F;}
+.stats-side-bar table tbody tr.uefa_dependency td.marker { background-color: #F07182;}
+.stats-side-bar table tbody tr.relegation td.marker { background-color: #FF9F76;}
+
+.stats-side-bar table tbody tr.ilequipo{background-color: #FFEB86;}
+
+[class^="icon-is-"]{display: inline-block; width: 16px; height: 16px; vertical-align: text-top; background-image: url(http://img.fifa.com/imgml/wmc/icons-fd-16.png); background-position: 0 0; background-repeat: no-repeat; margin-right: 2px;}
+.icon-is-same{background-position: -32px 0;}
+.icon-is-up{background-position: -48px 0;}
+.icon-is-down{background-position: -64px 0;}
+.banner{ text-align: center; margin: 0 auto;}
+.banner .728 {width: 728px; height: 90px;}

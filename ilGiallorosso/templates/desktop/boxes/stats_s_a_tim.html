@@ -1,0 +1,28 @@
+<div class="entry article-box box-side stats-side-bar">
+    <div class="title-box">Posiciones Serie A TIM</div>
+    <div class="body-box">
+        <table>
+            <thead>
+                <tr class="tblHeader">
+                    <th class="marker"></th>
+                    <th class="rnk noHover tbHeader"><acronym title="Ranking">Pos</acronym></th>
+                    <th class="team noHover tbHeader"><acronym title="Team">Equipo</acronym></th>
+                    <th class="mp tbHeader"><acronym title="Played">PJ</acronym></th>
+                    <th class="pts tbHeader"><acronym title="Points">Pts</acronym></th>
+                    <th title=" " class="diff noHover tbHeader"> </th></tr>
+            </thead>
+            <tbody>
+                {% for team in fifa.get_stats.italy %}
+                    <tr class="{% if team.uefa %}uefa{% endif %}{% if team.uefa_dependency %}uefa_dependency{% endif %}{% if team.champions %}champions{% endif %}{% if team.champions_preliminary %}champions_preliminary{% endif %}{% if team.relegation %}relegation{% endif %}{% if team.team == 'AS Roma' %} ilequipo{% endif %}">
+                        <td class="marker">{{team.marker}}</td>
+                        <td class="rnk">{{team.rnk}}</td>
+                        <td class="team">{{team.team}}</td>
+                        <td class="mp">{{team.mp}}</td>
+                        <td class="pts">{{team.pts}}</td>
+                        <td class="diff">{{team.diff|safe}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

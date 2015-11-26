@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title_page %}IlGialloroso{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/ilg-base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/ilg-theme.css">
+    {% block css_links %}{% endblock %}
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <header class="header-site">
+        <div class="header-content">
+            <div class="sitebar">
+                <div class="bar-logo">
+                    {% comment %}<img src="/static/img/generals/logo.jpg"> {% endcomment %}
+                    <p>IlGiallorosso</p>
+                </div>
+            </div>
+            <div class="nav">
+                <ul class="menu">
+                    <li class="menu-element"><a href="/">Home</a></li>
+                    <li class="menu-element"><a href="">El equipo</a></li>
+                    <li class="menu-element"><a href="">Serie A TIM</a></li>
+                    <li class="menu-element"><a href="">Champions League</a></li>
+                    <li class="menu-element"><a href="">#NoTottiNoParty</a></li>
+                    <li class="menu-element last"><a href="">Nuevo Estadio</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main class="content-site">
+        <div class="border"></div>
+        <div class="body-content">{% block content %}{% endblock %}</div>
+    </main>
+    <footer class="footer-site">
+        <div class="footer-content"></div>
+    </footer>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/abitgone/carousel/abitgone-carousel.js"></script>
+</body>
+</html>

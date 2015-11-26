@@ -1,0 +1,81 @@
+{% extends "desktop/base.html" %}
+{% block title_page %}
+ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
+{% endblock %}
+
+{% block css_link %}
+<link rel="stylesheet" type="text/css" href="/static/css/ilg-home.css">
+{% endblock %}
+
+{% block content %}
+    <div class="title-category">
+        <h1>{{category.name}}</h1>
+    </div>
+    <div class="top-entries">
+        {% for top_entry in page_top_post %}
+            {% if forloop.counter == 1 %}
+            <div class="entry article-box big">
+                <a href="" class="pic-article">
+                    {% if top_entry.photo %}
+                        <img src="{{top_entry.photo.url}}">
+                    {% endif %}
+                    <div class="about">{{top_entry.about}}.</div>
+                </a>
+                <div class="body-article">
+                    <span class="tags">{{top_entry.get_top_tags}}</span>
+                    <h2 class="title-entry">{{top_entry.title}}</h2>
+                    <span class="time">{{top_entry.date|timesince}}</span>
+                </div>
+            </div>
+            {% elif forloop.counter > 1 %}
+                <div class="entry article-box mini">
+                    <a href="" class="pic-article">
+                        {% if top_entry.photo %}
+                            <img src="{{top_entry.photo.url}}">
+                        {% endif %}
+                        <div class="about">{{top_entry.about}}.</div>
+                    </a>
+                    <div class="body-article">
+                        <span class="tags">{{top_entry.get_top_tags}}</span>
+                        <h2 class="title-entry">{{top_entry.title}}</h2>
+                        <span class="time">{{top_entry.date|timesince}}</span>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="banner 728">
+        <img src="/static/img/banners/banner_b.png">
+    </div>
+
+    <div class="second-content">
+        <div class="side-bar">
+            <div class="entry article-box banner" >
+                <img src="/static/img/banners/banner.png">
+            </div>
+            {% include "desktop/boxes/stats_s_a_tim.html" %}
+            {% include "desktop/boxes/next_match.html" with match=fifa.get_next_mtach %}
+            {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
+        </div>
+        <div class="oldie-entries">
+            {% for post in page.object_list %}
+                {% if forloop.counter > 3 %}
+                    <div class="entry article-box mini">
+                        <a href="" class="pic-article">
+                        {% if post.photo %}
+                            <img src="{{post.photo.url}}">
+                        {% endif %}
+                            <div class="about">{{post.about}}.</div>
+                        </a>
+                        <div class="body-article">
+                            <span class="tags">{{post.get_top_tags}}</span>
+                            <h2 class="title-entry">{{post.title}}</h2>
+                            <span class="time">{{post.date|timesince}}</span>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
