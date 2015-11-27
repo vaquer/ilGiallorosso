@@ -17,7 +17,7 @@ DIR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__FILE__)))
 with open(os.path.join(DIR_BASE, '../conf.json')) as config_file:
     confs = json.loads(config_file.read())
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ilGiallorosso.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ilGiallorosso.settings.dev")
 os.environ.setdefault("DJANGO_ILGIALLOROSSO_DB", confs['general']['db']['name'])
 os.environ.setdefault("DJANGO_ILGIALLOROSSO_DB_USER_NAME", confs['general']['db']['username'])
 os.environ.setdefault("DJANGO_ILGIALLOROSSO_DB_PASSWORD", confs['general']['db']['password'])
