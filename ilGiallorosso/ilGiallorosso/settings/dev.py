@@ -19,6 +19,8 @@ INSTALLED_APPS = (
     'fifastats',
     'blog',
     'watson',
+    'boto',
+    'storages',
     # 'awesome_gallery',
 )
 
@@ -62,12 +64,33 @@ DATABASES = {
     }
 }
 
+# AWS CONFIGURATION
+AWS_ACCESS_KEY = conf['aws']['accesskey']
+AWS_SECRET_KEY = conf['aws']['secretkey']
+AWS_STORAGE_STATIC_BUCKET_NAME = conf['aws']['static-bucket']
+AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
+AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
+AWS_MEDIA_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../static'),
+    os.path.join(BASE_DIR, '../static/'),
 )
 
-STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
+STATIC_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
+STATICFILES_STORAGE = 'ilgiallorosso.custom_storages.CustomStaticStorage'
+
+
+# MEDIA CONFIGURATION
+MEDIA_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media/ ')
+DEFAULT_FILE_STORAGE = 'ilgiallorosso.custom_storages.CustomMediaStorage'
+
+# IS DEV INSTANCE
 DEBUG = True

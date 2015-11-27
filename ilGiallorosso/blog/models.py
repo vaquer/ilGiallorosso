@@ -18,6 +18,7 @@ class Entry(models.Model):
     author = models.ForeignKey('Author', verbose_name='Autor', blank=True, null=True)
     top = models.BooleanField('Titular', default=False)
     active = models.BooleanField('Publicar', default=False)
+    order = models.IntegerField('Orden', null=True, blank=True)
 
     @models.permalink
     def get_absolute_url(self):
@@ -57,6 +58,8 @@ class Entry(models.Model):
             if count > 0:
                 slug = "{0}-{1}".format(slug, str(count))
             self.slug =  slug
+
+            self.order = Entry.objects.all().count() + 1
 
         super(Entry, self).save()
 
@@ -116,6 +119,9 @@ class Author(models.Model):
 
     def __unicode__(self):
         return u'{0}'.format(self.user.get_full_name())
+
+    def get_entries_of_this_author(self):
+        return Entry.objects.filter(active=True, author=self).order_by('-order')
 
     class Meta:
         verbose_name = 'Autor'

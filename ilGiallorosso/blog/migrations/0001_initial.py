@@ -9,7 +9,7 @@ from django.utils.timezone import utc
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('community', '__first__'),
+        ('community', '0002_auto_20151127_1820'),
     ]
 
     operations = [
@@ -46,12 +46,13 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=300, verbose_name=b'Titulo', db_index=True)),
                 ('slug', models.SlugField(max_length=350, verbose_name=b'Slug')),
-                ('date', models.DateField(default=datetime.datetime(2015, 10, 26, 2, 44, 30, 883032, tzinfo=utc), verbose_name=b'Fecha de Publicacion', db_index=True)),
+                ('date', models.DateField(default=datetime.datetime(2015, 11, 27, 18, 20, 20, 785883, tzinfo=utc), verbose_name=b'Fecha de Publicacion', db_index=True)),
                 ('text', models.TextField(null=True, verbose_name=b'Texto', blank=True)),
                 ('about', models.CharField(max_length=300, null=True, verbose_name=b'Encabezado', blank=True)),
                 ('photo', models.ImageField(upload_to=b'blog/entries/photos', null=True, verbose_name=b'Imagen', blank=True)),
                 ('top', models.BooleanField(default=False, verbose_name=b'Titular')),
                 ('active', models.BooleanField(default=False, verbose_name=b'Publicar')),
+                ('order', models.IntegerField(null=True, verbose_name=b'Orden', blank=True)),
                 ('author', models.ForeignKey(verbose_name=b'Autor', blank=True, to='blog.Author', null=True)),
                 ('category', models.ForeignKey(verbose_name=b'Categoria', blank=True, to='blog.Category', null=True)),
             ],
