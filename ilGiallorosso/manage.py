@@ -6,7 +6,7 @@ import json
 if __name__ == "__main__":
     DIR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    with open(os.path.join(DIR_BASE, '../conf.json')) as config_file:
+    with open(os.path.join(DIR_BASE, 'ilGiallorosso/conf.json')) as config_file:
         conf = json.loads(config_file.read())
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ilGiallorosso.settings.dev")
