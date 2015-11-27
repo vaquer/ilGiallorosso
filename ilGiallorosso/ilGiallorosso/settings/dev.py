@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'community',
     'fifastats',
     'blog',
-    # 'watson',
+    'watson',
     # 'awesome_gallery',
 )
 
