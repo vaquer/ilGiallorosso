@@ -54,10 +54,10 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ilgiallorossodev',
-        'USER': 'ilcapitano',
-        'PASSWORD': 'fr4nc15co#2015',
-        'HOST': 'localhost',
+        'NAME': conf['general']['db']['name'],
+        'USER': conf['general']['db']['username'],
+        'PASSWORD': conf['general']['db']['password'],
+        'HOST': conf['general']['db']['host'],
         'PORT': ''
     }
 }
@@ -70,3 +70,4 @@ STATICFILES_DIRS = (
 )
 
 STATIC_URL = '/static/'
+DEBUG = True

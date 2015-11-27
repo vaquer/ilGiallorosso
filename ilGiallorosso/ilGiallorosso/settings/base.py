@@ -12,15 +12,19 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+conf = {}
 
+with open(os.path.join(BASE_DIR, '../conf.json')) as json_file:
+    conf = json.loads(json_file.read())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ie+j5hbt$j^3_@foa_x-y&cswj2hzq=o2@xy_za^v*z_l@_&(c'
+SECRET_KEY = conf['general']['secretkey']
 
 ROOT_URLCONF = 'ilGiallorosso.urls'
 
@@ -38,5 +42,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
