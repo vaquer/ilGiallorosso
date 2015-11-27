@@ -12,7 +12,7 @@ import json
 
 from django.core.wsgi import get_wsgi_application
 
-DIR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__FILE__)))
+DIR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 with open(os.path.join(DIR_BASE, '../conf.json')) as config_file:
     confs = json.loads(config_file.read())

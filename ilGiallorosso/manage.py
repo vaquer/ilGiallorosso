@@ -4,7 +4,7 @@ import sys
 import json
 
 if __name__ == "__main__":
-    IR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__FILE__)))
+    IR_BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     with open(os.path.join(DIR_BASE, '../conf.json')) as config_file:
         conf = json.loads(config_file.read())
