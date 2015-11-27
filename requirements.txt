@@ -3,5 +3,7 @@ boto==2.38.0
 django-storages==1.1.8
 psycopg2==2.6.1
 Pillow==2.9.0
+requests==2.8.1
+beautifulsoup4==4.4.1
 -e git+ssh://git@github.com/vaquer/django-awesome-gallery.git#egg=django-awesome-gallery
 -e git+git://github.com/etianen/django-watson.git#egg=django-watson
