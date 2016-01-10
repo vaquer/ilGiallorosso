@@ -18,9 +18,14 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 
+admin.site.site_header = 'Noticias Roma - Administracion'
+# admin.site.index_title = 'Casas Atlas | Administracion'
+admin.site.site_title = 'Noticias Roma'
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'ilGiallorosso.views.index'),
-    url(r'^single/$', 'ilGiallorosso.views.single_test'),
+    url(r'^', include('blog.urls')),
+    url(r'^$', 'ilGiallorosso.views.home'),
+    url(r'^single/$', 'ilGiallorosso.views.single_test')
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,6 +1,7 @@
 from watson import register as watson_register
 from django.db import models
 from django.utils import timezone
+from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from community.models import UserGiallorosso
 
@@ -10,7 +11,7 @@ class Entry(models.Model):
     title = models.CharField('Titulo', max_length=300, db_index=True)
     slug = models.SlugField('Slug', max_length=350, db_index=True)
     date = models.DateField('Fecha de Publicacion', default=timezone.now(), db_index=True)
-    text =  models.TextField('Texto', blank=True, null=True)
+    text = models.TextField('Texto', blank=True, null=True)
     about = models.CharField('Encabezado', max_length=300, blank=True, null=True)
     photo = models.ImageField('Imagen', upload_to="blog/entries/photos", blank=True, null=True)
     tags = models.ManyToManyField('Tag', db_index=True, verbose_name='Tags', blank=True, null=True)
@@ -22,10 +23,15 @@ class Entry(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('single_entry', (), {'year': self.date.year, 'month': self.date.month, 'slug': self.slug})
+        return ('view_single_post', (), {'year': self.date.year, 'month': self.date.month, 'slug': self.slug})
+
+    @property
+    def get_permalink(self):
+        return mark_safe('<a href="{0}" target="_blank">{1}</a>'.format(self.get_absolute_url(), self.title))
+
 
     def get_related_entries(self):
-        entries = Entry.objects.filter(tags__in=self.tags.all()).exclude(slug=self.slug).order_by('date')
+        entries = Entry.objects.filter(tags__in=self.tags.all()).exclude(slug=self.slug).order_by('date').distinct()
         if not len(entries):
             return None
 
@@ -57,7 +63,7 @@ class Entry(models.Model):
             count = Entry.objects.filter(slug=slug).count()
             if count > 0:
                 slug = "{0}-{1}".format(slug, str(count))
-            self.slug =  slug
+            self.slug = slug
 
             self.order = Entry.objects.all().count() + 1
 
@@ -77,7 +83,7 @@ class Tag(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('single_tag', (), {'slug': self.slug})
+        return ('view_tag', (), {'slug': self.slug})
 
     def save(self):
         if not self.id:
@@ -85,7 +91,7 @@ class Tag(models.Model):
             count = Tag.objects.filter(slug=slug).count()
             if count > 0:
                 slug = "{0}-{1}".format(slug, str(count))
-            self.slug =  slug
+            self.slug = slug
 
         super(Tag, self).save()
 
@@ -105,7 +111,22 @@ class Category(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('single_category', (), {'slug', self.slug})
+        return ('view_category', (), {'slug': self.slug})
+
+    @property
+    def get_permalink(self):
+        return mark_safe('<a href="{0}" target="_blank">"{0}"</a>'.format(self.get_absolute_url()))
+    
+    def save(self):
+        # if not self.id:
+        slug = slugify(self.name)
+        count = Category.objects.filter(slug=slug).count()
+        if count > 0:
+            slug = "{0}-{1}".format(slug, str(count))
+        
+        self.slug = slug
+
+        super(Category, self).save()
 
     class Meta:
         verbose_name = 'Categoria'

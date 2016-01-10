@@ -1,10 +1,11 @@
 {% extends "desktop/base.html" %}
+{% load static from staticfiles %}
 {% block title_page %}
 ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
 {% endblock %}
 
-{% block css_link %}
-<link rel="stylesheet" type="text/css" href="/static/css/ilg-home.css">
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{% static "css/ilg-home.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -12,35 +13,11 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
         <h1>{{category.name}}</h1>
     </div>
     <div class="top-entries">
-        {% for top_entry in page_top_post %}
+        {% for post in page_top_post %}
             {% if forloop.counter == 1 %}
-            <div class="entry article-box big">
-                <a href="" class="pic-article">
-                    {% if top_entry.photo %}
-                        <img src="{{top_entry.photo.url}}">
-                    {% endif %}
-                    <div class="about">{{top_entry.about}}.</div>
-                </a>
-                <div class="body-article">
-                    <span class="tags">{{top_entry.get_top_tags}}</span>
-                    <h2 class="title-entry">{{top_entry.title}}</h2>
-                    <span class="time">{{top_entry.date|timesince}}</span>
-                </div>
-            </div>
-            {% elif forloop.counter > 1 %}
-                <div class="entry article-box mini">
-                    <a href="" class="pic-article">
-                        {% if top_entry.photo %}
-                            <img src="{{top_entry.photo.url}}">
-                        {% endif %}
-                        <div class="about">{{top_entry.about}}.</div>
-                    </a>
-                    <div class="body-article">
-                        <span class="tags">{{top_entry.get_top_tags}}</span>
-                        <h2 class="title-entry">{{top_entry.title}}</h2>
-                        <span class="time">{{top_entry.date|timesince}}</span>
-                    </div>
-                </div>
+                {% include "desktop/blog/includes/big_home_post.html" %}
+            {% else %}
+                {% include "desktop/blog/includes/mini_home_post_top.html" with mini=post %}
             {% endif %}
         {% endfor %}
     </div>
@@ -59,21 +36,9 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
             {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
         </div>
         <div class="oldie-entries">
-            {% for post in page.object_list %}
+            {% for mini in page.object_list %}
                 {% if forloop.counter > 3 %}
-                    <div class="entry article-box mini">
-                        <a href="" class="pic-article">
-                        {% if post.photo %}
-                            <img src="{{post.photo.url}}">
-                        {% endif %}
-                            <div class="about">{{post.about}}.</div>
-                        </a>
-                        <div class="body-article">
-                            <span class="tags">{{post.get_top_tags}}</span>
-                            <h2 class="title-entry">{{post.title}}</h2>
-                            <span class="time">{{post.date|timesince}}</span>
-                        </div>
-                    </div>
+                    {% include "desktop/blog/includes/mini_home_post_footer.html" %}
                 {% endif %}
             {% endfor %}
         </div>

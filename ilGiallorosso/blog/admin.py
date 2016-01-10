@@ -3,7 +3,8 @@ from .models import Entry, Tag, Author, Category
 
 # Register your models here.
 class EntryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date', 'about', 'author', 'category',)
+    list_display = ('title', 'date', 'about', 'author', 'category', 'get_permalink',)
+    # readonly_fields = ('get_permalink', )
     list_filter = ('title', 'date', 'author', 'category',)
     search_fields = ['title', 'date', 'author']
     order = ['date']
@@ -12,11 +13,23 @@ class EntryAdmin(admin.ModelAdmin):
         ('Autor', {'fields': ('author',)}),
         ('Categoria', {'fields': ('category', 'tags',)}),
     )
+
+    class Media:
+        js = (
+            'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
+            'https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/js/ckeditor/ckeditor.js',
+            'https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/js/admin/textareaentry.js',
+        )
+
+        css = {
+            'ckeditor': ('https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/css/reset_ckeditor.css', )
+        }
+
 admin.site.register(Entry, EntryAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short_description', 'pic',)
+    list_display = ('name', 'short_description', 'pic', 'get_permalink',)
     list_filter = ('name', 'short_description', 'pic',)
     search_fields = ['name']
     fieldsets = (

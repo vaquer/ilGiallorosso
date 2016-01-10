@@ -1,0 +1,13 @@
+<div class="entry article-box mini" style="margin-top: 5px;">
+    <a href="{{mini.get_absolute_url}}" class="pic-article">
+    	{% if mini.photo %}
+	        <img src="{{mini.photo.url}}">    		
+    	{% endif %}
+        <div class="about">{{mini.about}}.</div>
+    </a>
+    <div class="body-article">
+        <span class="tags">{{mini.get_top_tags}}</span>
+        <h2 class="title-entry">{{mini.title}}</h2>
+        <span class="time">{{mini.date|timesince}}</span>
+    </div>
+</div>

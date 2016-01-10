@@ -1,10 +1,11 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title_page %}IlGialloroso{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/ilg-base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/ilg-theme.css">
+    <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-base.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-theme.css" %}">
     {% block css_links %}{% endblock %}
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
@@ -16,7 +17,7 @@
             <div class="sitebar">
                 <div class="bar-logo">
                     {% comment %}<img src="/static/img/generals/logo.jpg"> {% endcomment %}
-                    <p>IlGiallorosso</p>
+                    <p>noticiasroma.com</p>
                 </div>
             </div>
             <div class="nav">

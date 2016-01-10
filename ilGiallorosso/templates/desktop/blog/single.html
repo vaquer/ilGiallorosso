@@ -1,8 +1,18 @@
-{% extends "desktop/base.html" %}
+{% extends "desktop/base.html" %}s
+{% load static from staticfiles %}
+
 
 {% block title_page %}{{post.title}} {% endblock %}
 
+{% block css_links %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-single.css" %}">
+{% endblock %}
+
 {% block content %}
+    <div class="banner 728">
+        <img src="/static/img/banners/banner_b.png">
+    </div>
+
     <div class="entry article-box big">
         <a href="" class="pic-article">
             {% if post.photo %}
@@ -16,15 +26,29 @@
             <span class="time">{{post.date|timesince}}</span>
         </div>
         <div class="content-article">
-            {{post.text}}
+            {{post.text|safe}}
         </div>
     </div>
+    <div class="banner 728">
+        <img src="/static/img/banners/banner_b.png">
+    </div>
+
     <div class="side-bar">
+        {% include "desktop/boxes/stats_s_a_tim.html" %}
+        
         <div class="entry article-box banner" >
             <img src="/static/img/banners/banner.png">
         </div>
-        {% include "desktop/boxes/stats_s_a_tim.html" %}
-        {% include "desktop/boxes/next_match.html" with match=fifa.get_next_mtach %}
-        {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
     </div>
+    <div class="more-info">
+        {% include "desktop/boxes/next_match.html" with match=fifa.get_next_mtach %}
+        <div class="entry article-box more-posts">
+            <div class="title-box">Ultimas Noticias</div>
+            <div class="body-box">
+                {% for nano in post.get_related_entries  %}
+                    {% include "desktop/blog/includes/nano_post.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
 {% endblock %}

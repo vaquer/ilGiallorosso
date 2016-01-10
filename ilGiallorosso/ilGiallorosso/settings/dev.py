@@ -21,7 +21,7 @@ INSTALLED_APPS = (
     'watson',
     'boto',
     'storages',
-    # 'awesome_gallery',
+    'django-awesome-gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -65,8 +65,8 @@ DATABASES = {
 }
 
 # AWS CONFIGURATION
-AWS_ACCESS_KEY = conf['aws']['accesskey']
-AWS_SECRET_KEY = conf['aws']['secretkey']
+AWS_ACCESS_KEY_ID = conf['aws']['accesskey']
+AWS_SECRET_ACCESS_KEY = conf['aws']['secretkey']
 AWS_STORAGE_STATIC_BUCKET_NAME = conf['aws']['static-bucket']
 AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
 AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
@@ -84,13 +84,13 @@ STATICFILES_FINDERS = (
 )
 
 STATIC_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
-STATICFILES_STORAGE = 'ilgiallorosso.custom_storages.CustomStaticStorage'
+STATICFILES_STORAGE = 'ilGiallorosso.custom_storages.CustomStaticStorage'
 
 
 # MEDIA CONFIGURATION
 MEDIA_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media/ ')
-DEFAULT_FILE_STORAGE = 'ilgiallorosso.custom_storages.CustomMediaStorage'
+DEFAULT_FILE_STORAGE = 'ilGiallorosso.custom_storages.CustomMediaStorage'
 
 # IS DEV INSTANCE
 DEBUG = True
