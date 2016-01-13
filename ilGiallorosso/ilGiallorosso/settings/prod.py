@@ -16,8 +16,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'community',
+    'fifastats',
     'blog',
-    'watson'
+    'watson',
+    'boto',
+    'storages',
+    'awesome_gallery',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,8 +65,8 @@ DATABASES = {
 }
 
 # AWS CONFIGURATION
-AWS_ACCESS_KEY = conf['aws']['accesskey']
-AWS_SECRET_KEY = conf['aws']['secretkey']
+AWS_ACCESS_KEY_ID = conf['aws']['accesskey']
+AWS_SECRET_ACCESS_KEY = conf['aws']['secretkey']
 AWS_STORAGE_STATIC_BUCKET_NAME = conf['aws']['static-bucket']
 AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
 AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
@@ -88,5 +92,17 @@ MEDIA_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_MEDIA_BUCKET_NAME
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media/ ')
 DEFAULT_FILE_STORAGE = 'ilGiallorosso.custom_storages.CustomMediaStorage'
 
+# AWESOME GALLERY CONFIGS
+AWESOME_LANGUAGES_ALERTS = 'ES'
+AWESOME_APP_BLOG_NAME = 'blog'
+AWESOME_APP_MODEL_TAG = 'Tag'
+AWESOME_GALLERY_PAGINATOR_ELEMENTS = 10
+AWESOME_GALLERY_SEARCH_BY_TAGS_TEMPLATE = 'elements_by_tags'
+AWESOME_GALLERY_GALLERY_TEMPLATE = 'gallery'
+AWESOME_GALLERY_GALERIES_TEMPLATE = 'galeries'
+AWESOME_GALLERY_SIZES = ((50, 50), (100, 100), (180, 0), (215, 0), (350, 0), (470, 0), (600, 0), (780, 0), (1024, 0))
+
+IS_MOBILE = False
+
 # IS DEV INSTANCE
-DEBUG = True
+DEBUG = False
