@@ -1,9 +1,9 @@
-from watson import register as watson_register
 from django.db import models
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from community.models import UserGiallorosso
+# from watson import register as watson_register
 
 
 # Create your models here.
@@ -72,7 +72,7 @@ class Entry(models.Model):
     class Meta:
         verbose_name = 'Entrada'
         verbose_name_plural = 'Entradas'
-watson_register(Entry)
+# watson_register(Entry)
 
 class Tag(models.Model):
     tag = models.CharField('Tag', max_length=150, unique=True)

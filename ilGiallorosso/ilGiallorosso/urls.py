@@ -25,6 +25,7 @@ admin.site.site_title = 'Noticias Roma'
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('blog.urls')),
+    url(r'^gallery/', include('awesome_gallery.urls')),
     url(r'^$', 'ilGiallorosso.views.home'),
     url(r'^single/$', 'ilGiallorosso.views.single_test')
 ]
