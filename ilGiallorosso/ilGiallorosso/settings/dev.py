@@ -60,7 +60,7 @@ DATABASES = {
         'USER': conf['general']['db']['username'],
         'PASSWORD': conf['general']['db']['password'],
         'HOST': conf['general']['db']['host'],
-        'PORT': ''
+        'PORT': '5432'
     }
 }
 
