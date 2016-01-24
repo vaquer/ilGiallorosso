@@ -5,7 +5,7 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ilgiallorosso.net']
+ALLOWED_HOSTS = ['www.noticiasroma.com']
 
 # Application definition
 INSTALLED_APPS = (
@@ -33,6 +33,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'ilGiallorosso.timezoneMiddleware.TimezoneMiddleware',
 )
 
 TEMPLATES = [
@@ -60,7 +61,7 @@ DATABASES = {
         'USER': conf['general']['db']['username'],
         'PASSWORD': conf['general']['db']['password'],
         'HOST': conf['general']['db']['host'],
-        'PORT': ''
+        'PORT': '5432'
     }
 }
 
@@ -100,7 +101,7 @@ AWESOME_GALLERY_PAGINATOR_ELEMENTS = 10
 AWESOME_GALLERY_SEARCH_BY_TAGS_TEMPLATE = 'elements_by_tags'
 AWESOME_GALLERY_GALLERY_TEMPLATE = 'gallery'
 AWESOME_GALLERY_GALERIES_TEMPLATE = 'galeries'
-AWESOME_GALLERY_SIZES = ((50, 50), (100, 100), (180, 0), (215, 0), (350, 0), (470, 0), (600, 0), (780, 0), (1024, 0))
+AWESOME_GALLERY_SIZES = ((50, 50), (100, 100), (470, 350), (670, 495), (780, 480), (1024, 800))
 
 IS_MOBILE = False
 

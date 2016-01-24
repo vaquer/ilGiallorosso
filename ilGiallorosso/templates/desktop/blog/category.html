@@ -1,7 +1,7 @@
 {% extends "desktop/base.html" %}
 {% load static from staticfiles %}
 {% block title_page %}
-ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
+noticiasroma.com - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
 {% endblock %}
 
 {% block css_links %}
@@ -9,9 +9,35 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
 {% endblock %}
 
 {% block content %}
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single_top -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="2985538119"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
     <div class="title-category">
         <h1>{{category.name}}</h1>
     </div>
+
+    {% if page.number != 1 %}
+        <div class="paginator">
+            <div class="text_paginator">
+                {% if page.has_previous %}
+                    <a href="{{category.get_absolute_url}}p/{{page.previous_page_number}}/"> << Anterior</a>
+                {% endif %}
+                P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                {% if page.has_next %}
+                    <a href="{{category.get_absolute_url}}p/{{page.next_page_number}}/">Siguiente >></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
     <div class="top-entries">
         {% for post in page_top_post %}
             {% if forloop.counter == 1 %}
@@ -22,7 +48,7 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
         {% endfor %}
     </div>
 
-    <div class="banner 728">
+    <div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 728x90_single -->
         <ins class="adsbygoogle"
@@ -34,9 +60,9 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
         </script>
     </div>
 
-    <div class="second-content">
+    <div class="second-content" style="margin-top: 100px; display: inline-block;">
         <div class="side-bar">
-            <div class="entry article-box banner" >
+            <div class="entry article-box banner banner_350_A" >
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 300x250_A -->
                 <ins class="adsbygoogle"
@@ -47,8 +73,10 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
                 (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
             </div>
-            {% include "desktop/boxes/stats_s_a_tim.html" %}
+            {% include "desktop/boxes/facebook_box.html" %}
             {% include "desktop/boxes/next_match.html" with match=fifa.get_next_mtach %}
+            {% include "desktop/boxes/stats_s_a_tim.html" %}
+            {% include "desktop/boxes/twitter_box.html" %}
             {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
         </div>
         <div class="oldie-entries">
@@ -57,6 +85,18 @@ ilGialloroso - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}
                     {% include "desktop/blog/includes/mini_home_post_footer.html" %}
                 {% endif %}
             {% endfor %}
+
+            <div class="paginator">
+                <div class="text_paginator">
+                    {% if page.has_previous %}
+                        <a href="{{category.get_absolute_url}}p/{{page.previous_page_number}}/"> << Anterior</a>
+                    {% endif %}
+                    P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                    {% if page.has_next %}
+                        <a href="{{category.get_absolute_url}}p/{{page.next_page_number}}/">Siguiente >></a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

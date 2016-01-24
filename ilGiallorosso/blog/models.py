@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
+from django.core.cache import cache
 from community.models import UserGiallorosso
 # from watson import register as watson_register
 
@@ -27,25 +28,38 @@ class Entry(models.Model):
 
     @property
     def get_permalink(self):
-        return mark_safe('<a href="{0}" target="_blank">{1}</a>'.format(self.get_absolute_url(), self.title))
+        return mark_safe('<a href="{0}" target="_blank">{1}</a>'.format(self.get_absolute_url(), self.title.encode("utf-8")))
 
 
     def get_related_entries(self):
-        entries = Entry.objects.filter(tags__in=self.tags.all()).exclude(slug=self.slug).order_by('date').distinct()
+        entries = cache.get('relate_entries_{0}'.format(self.id))
+        if not entries:
+            entries = Entry.objects.select_related('author', 'category').filter(tags__in=self.tags.all()).exclude(slug=self.slug).order_by('-date').distinct()
+            cache.set('relate_entries_{0}'.format(self.id), entries, 60 * 60)
+
         if not len(entries):
             return None
 
         return entries[:5]
 
     def get_recent_entries(self):
-        entries = Entry.objects.filter(active=True).exclude(slug=self.slug).order_by('date')
+        entries = cache.get('recent_entries_{0}'.format(self.id))
+        if not entries:
+            entries = Entry.objects.select_related('author', 'category').filter(active=True).exclude(slug=self.slug).order_by('-date')
+            cache.set('recent_entries_{0}'.format(self.id), entries, 60 * 60)
+
         if not len(entries):
             return None
 
         return entries[:3]
 
     def get_tags(self):
-        return self.tags.all()
+        tags = cache.get('tags_of_{0}'.format(self.id))
+        if not tags:
+            tags = self.tags.all()
+            cache.set('tags_of_{0}'.format(self.id), tags, 60 * 60)
+
+        return tags 
 
     def get_top_tags(self):
         tags_top = []
@@ -67,6 +81,7 @@ class Entry(models.Model):
 
             self.order = Entry.objects.all().count() + 1
 
+        cache.delete('entry_{0}_v4'.format(self.slug))
         super(Entry, self).save()
 
     class Meta:

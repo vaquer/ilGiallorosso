@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 admin.site.site_header = 'Noticias Roma - Administracion'
 # admin.site.index_title = 'Casas Atlas | Administracion'
@@ -24,9 +25,11 @@ admin.site.site_title = 'Noticias Roma'
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^robots.txt', TemplateView.as_view(template_name='desktop/robots.txt', content_type='text/plain')),
     url(r'^', include('blog.urls')),
-    url(r'^gallery/', include('awesome_gallery.urls')),
+    url(r'^', include('awesome_gallery.urls')),
     url(r'^$', 'ilGiallorosso.views.home'),
+    url(r'^p/(?P<p>[0-9]+)/$', 'ilGiallorosso.views.home'),
     url(r'^single/$', 'ilGiallorosso.views.single_test')
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
