@@ -45,6 +45,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
     'ilGiallorosso.timezoneMiddleware.TimezoneMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.template.context_processors.tz',
 )
 
 TEMPLATES = [

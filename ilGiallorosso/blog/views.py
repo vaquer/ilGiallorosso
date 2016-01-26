@@ -9,9 +9,9 @@ from fifastats.scrapper import FifaScrapper
 def view_category(request, slug=None, page=1):
     category_model = get_object_or_404(Category, slug=slug)
 
-    post_models = cache.get('entries_category_{0}'.format(category_model.id))
+    post_models = cache.get('entries_category_v2_{0}'.format(category_model.id))
     if not post_models:
-        post_models = Entry.objects.select_related('author', 'category').filter(category=category_model).order_by('-order')
+        post_models = Entry.objects.select_related('author', 'category').filter(category=category_model, active=True).order_by('-order')
         cache.set('entries_category_{0}'.format(category_model.id), post_models, 60*15)
 
     post_paginator = Paginator(post_models, 20)
@@ -28,9 +28,9 @@ def view_category(request, slug=None, page=1):
 
 
 def view_tag(request, tag=None, page=1):
-    post_models = cache.get('entries_tag_{0}'.format(tag))
+    post_models = cache.get('entries_tag_v2_{0}'.format(tag))
     if not post_models:
-        post_models = Entry.objects.select_related('author', 'category').filter(tags__slug__in=[tag])
+        post_models = Entry.objects.select_related('author', 'category').filter(tags__slug__in=[tag], active=True)
         cache.set('entries_tag_{0}'.format(category_model.id), post_models, 60*15)
 
     post_paginator = Paginator(post_models, 20)

@@ -1,3 +1,4 @@
+{% load tz %}
 <div class="nano-post">
     <a href="{{nano.get_absolute_url}}" class="pic-article">
         {% if nano.photo %}
@@ -8,6 +9,8 @@
     <div class="body-article">
         <span class="tags">{{nano.get_top_tags}}</span>
         <h2 class="title-entry">{{nano.title}}</h2>
-        <span class="time">{{nano.date|timesince}}</span>
+        {% localtime on %} 
+        <span class="time">{{nano.date}}</span>
+        {% endlocaltime %}
     </div>
 </div>

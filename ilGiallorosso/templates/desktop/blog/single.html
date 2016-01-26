@@ -1,5 +1,6 @@
 {% extends "desktop/base.html" %}s
 {% load static from staticfiles %}
+{% load tz %}
 
 
 {% block title_page %}{{post.title}} {% endblock %}
@@ -13,7 +14,7 @@
     <meta property="og:title" content="{{post.title|striptags}}"/>
     <meta property="og:type" content="article"/>
     <meta property="og:url" content="http://www.noticiasroma.com/{{post.get_absolute_url}}"/>
-    {% if post.photo.url %}
+    {% if post.has_photo %}
         <meta property="og:image" content="{{post.photo.url}}"/>
     {% endif %}
     <meta property="og:site_name" content="noticiasroma.com"/>
@@ -25,7 +26,7 @@
     <meta name="twitter:creator" content="https://twitter.com/NoticiASRoma">
     <meta name="twitter:title" content="{{post.title}}">
     <meta name="twitter:description" content="{{post.get_top_tags}}">
-    {% if post.photo %}
+    {% if post.has_photo %}
     <meta name="twitter:image:src" content="{{post.photo.url}}">
     {% endif %}
 {% endblock %}
@@ -57,7 +58,7 @@
 
     <div class="entry article-box big">
         <a href="" class="pic-article">
-            {% if post.photo %}
+            {% if post.has_photo %}
                 <img src="{{post.photo.url}}">
             {% endif %}
             <div class="about">{{post.about}}</div>
@@ -71,7 +72,9 @@
         <div class="body-article">
             <span class="tags">{{post.get_top_tags}}</span>
             <h2 class="title-entry">{{post.title}}</h2>
-            <span class="time">{{post.date|timesince}}</span>
+            {% localtime on %} 
+            <span class="time">{{post.date}}</span>
+            {% endlocaltime %}
         </div>
         <div class="content-article">
             {{post.text|safe}}
@@ -121,9 +124,7 @@
     </div>
 
     <div class="side-bar">
-        {% include "desktop/boxes/facebook_box.html" %}
-        {% include "desktop/boxes/stats_s_a_tim.html" %}
-        
+        {% include "desktop/boxes/facebook_box.html" %}        
         <div class="entry article-box banner" >
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- 300x250_A -->
@@ -135,6 +136,7 @@
             (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
+        {% include "desktop/boxes/stats_s_a_tim.html" %}
         {% include "desktop/boxes/twitter_box.html" %}
     </div>
     <div class="more-info">

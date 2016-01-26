@@ -1,3 +1,4 @@
+{% load tz %}
 <div class="entry article-box big">
     <a href="{{post.get_absolute_url}}" class="pic-article">
         {% if post.photo %}
@@ -8,6 +9,8 @@
     <div class="body-article">
         <span class="tags">{{post.get_top_tags}}</span>
         <h2 class="title-entry">{{post.title}}</h2>
-        <span class="time">{{post.date|timesince}}</span>
+        {% localtime on %} 
+        <span class="time">{{post.date}}</span>
+        {% endlocaltime %}
     </div>
 </div>

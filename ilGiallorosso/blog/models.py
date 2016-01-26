@@ -22,6 +22,9 @@ class Entry(models.Model):
     active = models.BooleanField('Publicar', default=False)
     order = models.IntegerField('Orden', null=True, blank=True)
 
+    def __unicode__(self):
+        return u'{0}-{1}'.format(self.slug)
+
     @models.permalink
     def get_absolute_url(self):
         return ('view_single_post', (), {'year': self.date.year, 'month': self.date.month, 'slug': self.slug})
@@ -32,10 +35,10 @@ class Entry(models.Model):
 
 
     def get_related_entries(self):
-        entries = cache.get('relate_entries_{0}'.format(self.id))
+        entries = cache.get('relate_entries_v2_{0}'.format(self.id))
         if not entries:
-            entries = Entry.objects.select_related('author', 'category').filter(tags__in=self.tags.all()).exclude(slug=self.slug).order_by('-date').distinct()
-            cache.set('relate_entries_{0}'.format(self.id), entries, 60 * 60)
+            entries = Entry.objects.select_related('author', 'category').filter(tags__in=self.tags.all(), active=True).exclude(slug=self.slug).order_by('-date').distinct()
+            cache.set('relate_entries_v2_{0}'.format(self.id), entries, 60 * 60)
 
         if not len(entries):
             return None
@@ -43,10 +46,10 @@ class Entry(models.Model):
         return entries[:5]
 
     def get_recent_entries(self):
-        entries = cache.get('recent_entries_{0}'.format(self.id))
+        entries = cache.get('recent_entries_v2_{0}'.format(self.id))
         if not entries:
             entries = Entry.objects.select_related('author', 'category').filter(active=True).exclude(slug=self.slug).order_by('-date')
-            cache.set('recent_entries_{0}'.format(self.id), entries, 60 * 60)
+            cache.set('recent_entries_v2_{0}'.format(self.id), entries, 60 * 60)
 
         if not len(entries):
             return None
@@ -65,11 +68,17 @@ class Entry(models.Model):
         tags_top = []
 
         try:
-            tags_top = [tag.tag for tag in self.get_tags()[:5]]
+            tags_top = [tag.tag for tag in self.get_tags()[:4]]
         except:
             return ''
 
         return ', '.join(tags_top)
+
+    def has_photo(self):
+        try:
+            return True if self.photo.url else False
+        except:
+            return False
 
     def save(self):
         if not self.id:

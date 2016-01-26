@@ -1,3 +1,4 @@
+{% load tz %}
 <div class="entry article-box mini" style="margin-top: 5px;">
     <a href="{{mini.get_absolute_url}}" class="pic-article">
         {% if mini.photo %}
@@ -8,6 +9,8 @@
     <div class="body-article">
         <span class="tags">{{mini.get_top_tags}}</span>
         <h2 class="title-entry">{{mini.title}}</h2>
-        <span class="time">{{mini.date|timesince}}</span>
+        {% localtime on %} 
+        <span class="time">{{mini.date}}</span>
+        {% endlocaltime %}
     </div>
 </div>
