@@ -3,6 +3,7 @@
     main.content-site .body-content {width: 1000px; margin: 0 auto;}
     main.content-site .body-content .banner { margin: 15px auto;}
     main.content-site .body-content .entry.article-box .body-article {}
+    main.content-site .body-content .entry.article-box .body-article p { margin-top: 15px;}
     main.content-site .body-content .entry.article-box .body-article span.tags {color: #A0A0A0; font-size: 12px; text-transform: uppercase;}
     main.content-site .body-content .entry.article-box .body-article h2 {margin: 0; padding-left: 0;}
     main.content-site .body-content .entry.article-box .body-article span.time {color: #A0A0A0; font-size: 12px; text-transform: uppercase;}
