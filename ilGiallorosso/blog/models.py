@@ -23,7 +23,7 @@ class Entry(models.Model):
     order = models.IntegerField('Orden', null=True, blank=True)
 
     def __unicode__(self):
-        return u'{0}-{1}'.format(self.slug)
+        return u'{0}'.format(self.slug)
 
     @models.permalink
     def get_absolute_url(self):

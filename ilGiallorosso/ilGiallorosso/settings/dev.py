@@ -1,11 +1,7 @@
 import os
 from .base import *
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['www.noticiasroma.com']
+ALLOWED_HOSTS = ['www.noticiasroma.com', 'dev.noticiasroma.com']
 
 # Application definition
 INSTALLED_APPS = (
@@ -21,7 +17,8 @@ INSTALLED_APPS = (
     'watson',
     'boto',
     'storages',
-    'awesome_gallery',
+    'autocomplete_light',
+    # 'awesome_gallery',
 )
 
 
@@ -116,7 +113,7 @@ AWESOME_GALLERY_GALLERY_TEMPLATE = 'gallery'
 AWESOME_GALLERY_GALERIES_TEMPLATE = 'galeries'
 AWESOME_GALLERY_SIZES = ((50, 50), (100, 100), (470, 350), (670, 495), (780, 480), (1024, 800))
 
+# IS DEV INSTANCE
 IS_MOBILE = False
 
-# IS DEV INSTANCE
-DEBUG = False
+DEBUG = True

@@ -1,10 +1,6 @@
 import os
 from .base import *
 
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 ALLOWED_HOSTS = ['www.noticiasroma.com']
 
 # Application definition
@@ -24,7 +20,17 @@ INSTALLED_APPS = (
     'awesome_gallery',
 )
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.RedisCache',
+        'TIMEOUT': 60,
+        'LOCATION': '10.0.0.239:6379',
+    },
+}
+
 MIDDLEWARE_CLASSES = (
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -34,6 +40,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'ilGiallorosso.timezoneMiddleware.TimezoneMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.template.context_processors.tz',
 )
 
 TEMPLATES = [
@@ -72,6 +80,7 @@ AWS_STORAGE_STATIC_BUCKET_NAME = conf['aws']['static-bucket']
 AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
 AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
 AWS_MEDIA_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
+AWS_S3_SECURE_URLS = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
