@@ -18,7 +18,7 @@ INSTALLED_APPS = (
     'boto',
     'storages',
     'autocomplete_light',
-    'debug_toolbar',
+    # 'debug_toolbar',
     # 'awesome_gallery',
 )
 
@@ -32,7 +32,7 @@ CACHES = {
 }
 
 MIDDLEWARE_CLASSES = (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -118,15 +118,15 @@ AWESOME_GALLERY_SIZES = ((50, 50), (100, 100), (470, 350), (670, 495), (780, 480
 #DEBUG_TOOLBAR_PATCH_SETTINGS = False
 # IS DEV INSTANCE
 IS_MOBILE = False
-INTERNAL_IPS = ('127.0.0.1','52.71.227.216',)
+# INTERNAL_IPS = ('127.0.0.1','52.71.227.216',)
 
-def custom_show_toolbar(self):
-    return True
+# def custom_show_toolbar(self):
+#     return True
 
-DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': True,
-    'ENABLE_STACKTRACES' : True,
-    'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
-}
+# DEBUG_TOOLBAR_CONFIG = {
+#     'INTERCEPT_REDIRECTS': True,
+#     'ENABLE_STACKTRACES' : True,
+#     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
+# }
 
 DEBUG = True
