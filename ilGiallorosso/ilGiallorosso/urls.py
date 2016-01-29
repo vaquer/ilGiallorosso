@@ -31,6 +31,7 @@ admin.site.site_header = 'Noticias Roma - Administracion'
 admin.site.site_title = 'Noticias Roma'
 
 urlpatterns = [
+    #url(r'^__debug__/', include(debug_toolbar.urls)),
     url(r'TagAutocomplete/', include('autocomplete_light.urls'), name='autocomplete'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^robots.txt', TemplateView.as_view(template_name='desktop/robots.txt', content_type='text/plain')),

@@ -11,7 +11,7 @@ from community.models import UserGiallorosso
 class Entry(models.Model):
     title = models.CharField('Titulo', max_length=300, db_index=True)
     slug = models.SlugField('Slug', max_length=350, db_index=True)
-    date = models.DateField('Fecha de Publicacion', default=timezone.now(), db_index=True)
+    date = models.DateField('Fecha de Publicacion', db_index=True)
     text = models.TextField('Texto', blank=True, null=True)
     about = models.CharField('Encabezado', max_length=300, blank=True, null=True)
     photo = models.ImageField('Imagen', upload_to="blog/entries/photos", blank=True, null=True)
@@ -88,6 +88,7 @@ class Entry(models.Model):
                 slug = "{0}-{1}".format(slug, str(count))
             self.slug = slug
 
+            self.date = timezone.now()
             self.order = Entry.objects.all().count() + 1
 
         cache.delete('entry_{0}_v4'.format(self.slug))
@@ -99,7 +100,7 @@ class Entry(models.Model):
 # watson_register(Entry)
 
 class Tag(models.Model):
-    tag = models.CharField('Tag', max_length=150, unique=True)
+    tag = models.CharField('Tag', max_length=150, unique=True, db_index=True)
     slug = models.SlugField('Slug', max_length=200, unique=True)
 
     def __unicode__(self):
