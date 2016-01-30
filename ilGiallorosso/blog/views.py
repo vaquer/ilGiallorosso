@@ -59,8 +59,8 @@ def view_single_post(request, year=None, month=None, slug=None):
 
 
 def view_redgol_feed(request):
-    if request.method != "POST":
-        raise Http404
+    # if request.method != "POST":
+    #     raise Http404
 
     total_post = cache.get('home_posts_v5')
 
