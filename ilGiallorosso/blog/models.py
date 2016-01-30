@@ -80,6 +80,16 @@ class Entry(models.Model):
         except:
             return False
 
+    def dehydrate(self):
+        response = {
+            'title': self.title.encode('utf-8'),
+            'permalink': 'http://www.noticiasroma.com{0}'.format(self.get_absolute_url()),
+            'about': self.about.encode('utf-8'),
+            'photo': self.photo.url
+        }
+
+        return response
+
     def save(self):
         if not self.id:
             slug = slugify(self.title)

@@ -1,5 +1,6 @@
+import json
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage
 from django.core.cache import cache
 from .models import Entry, Category
@@ -55,3 +56,19 @@ def view_single_post(request, year=None, month=None, slug=None):
     sc = FifaScrapper()
 
     return render(request, "desktop/blog/single.html", {"post": post, "fifa": sc})
+
+
+def view_redgol_feed(request):
+    if request.method != "POST":
+        raise Http404
+
+    total_post = cache.get('home_posts_v5')
+
+    if not total_post:
+        total_post = Entry.objects.select_related('author', 'category').filter(active=True).order_by('-order')
+        cache.set('home_posts_v5', total_post, 60 * 10)
+
+    post_response = total_post[:5]
+    post_response_json = [post.dehydrate() for post in post_response]
+
+    return HttpResponse(json.dumps(post_response_json), content_type="application/json")
