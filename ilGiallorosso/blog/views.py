@@ -75,5 +75,5 @@ def view_redgol_feed(request):
     if "callback" in request.GET:
         data = "{0}({1})".format(request.GET.get('callback', 'reponseCallback'), post_response_json)
         return HttpResponse(data, content_type="text/javascript")
-
-    return HttpResponse(post_response_json, content_type="application/json")
+    else:
+        return HttpResponse(post_response_json, content_type="application/json")
