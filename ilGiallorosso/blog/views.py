@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator, EmptyPage
 from django.core.cache import cache
+from django.contrib.sitemaps import Sitemap
+from django.utils import timezone
 from .models import Entry, Category
 from fifastats.scrapper import FifaScrapper
 
@@ -77,3 +79,18 @@ def view_redgol_feed(request):
         return HttpResponse(data, content_type="text/javascript")
     else:
         return HttpResponse(post_response_json, content_type="application/json")
+
+
+class EntrySitemap(Sitemap):
+    changefreq = "daily"
+    priority = 1.0
+    lastmod = timezone.now()
+
+    def items(self):
+        site_map_entries = cache.get('site_map_entries')
+
+        if not site_map_entries:
+            site_map_entries = Entry.objects.filter(active=True).order_by('-date')
+            cache.set('site_map_entries', site_map_entries, 60 * 15)
+
+        return site_map_entries

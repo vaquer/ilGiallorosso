@@ -21,20 +21,28 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import generic
+from django.contrib.sitemaps.views import sitemap
+
 from autocomplete_light.compat import url, urls
 
 from blog.models import Tag
 from blog.forms import EntryFormAutocomplete
+from blog.views import EntrySitemap
 
 admin.site.site_header = 'Noticias Roma - Administracion'
 # admin.site.index_title = 'Casas Atlas | Administracion'
 admin.site.site_title = 'Noticias Roma'
 
+sitemaps = {
+    'entries': EntrySitemap
+}
+
 urlpatterns = [
     #url(r'^__debug__/', include(debug_toolbar.urls)),
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'TagAutocomplete/', include('autocomplete_light.urls'), name='autocomplete'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^robots.txt', TemplateView.as_view(template_name='desktop/robots.txt', content_type='text/plain')),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='desktop/robots.txt', content_type='text/plain')),
     url(r'^', include('blog.urls')),
     # url(r'^', include('awesome_gallery.urls')),
     url(r'^$', 'ilGiallorosso.views.home'),

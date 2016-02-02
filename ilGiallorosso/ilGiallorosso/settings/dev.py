@@ -11,6 +11,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'community',
     'fifastats',
     'blog',
@@ -22,6 +24,7 @@ INSTALLED_APPS = (
     # 'awesome_gallery',
 )
 
+SITE_ID = 1
 
 CACHES = {
     'default': {
