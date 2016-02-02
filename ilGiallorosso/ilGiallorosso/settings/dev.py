@@ -36,6 +36,7 @@ CACHES = {
 
 MIDDLEWARE_CLASSES = (
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -87,6 +88,15 @@ AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
 AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
 AWS_MEDIA_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
 AWS_S3_SECURE_URLS = False
+
+from django.utils import timezone
+
+expires = timezone.now() + timezone.timedelta(days=5)
+
+AWS_HEADERS = {
+    'Expires': expires.strftime('%a, %d %b %Y 20:00:00 GMT'),
+    'Cache-Control': 'max-age=86400',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
