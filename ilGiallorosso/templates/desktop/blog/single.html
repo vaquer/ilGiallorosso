@@ -58,7 +58,7 @@
     <div class="entry article-box big">
         <a href="" class="pic-article">
             {% if post.has_photo %}
-                <img src="{{post.photo.url}}">
+                <img src="{{post.photo.url}}" title="{{post.title}}" alt="{{post.about}}">
             {% endif %}
             <div class="about">{{post.about}}</div>
         </a>

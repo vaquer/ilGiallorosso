@@ -2,7 +2,7 @@
 <div class="entry article-box mini" style="margin-top: 5px;">
     <a href="{{mini.get_absolute_url}}" class="pic-article">
         {% if mini.photo %}
-            <img src="{{mini.photo.url}}">
+            <img src="{{mini.photo.url}}" title="{{mini.title}}" alt="{{mini.about}}">
         {% endif %}
         <div class="about">{{mini.about|truncatewords:12}}</div>
     </a>

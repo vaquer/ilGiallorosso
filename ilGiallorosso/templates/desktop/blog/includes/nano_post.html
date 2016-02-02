@@ -2,7 +2,7 @@
 <div class="nano-post">
     <a href="{{nano.get_absolute_url}}" class="pic-article">
         {% if nano.photo %}
-            <img src="{{nano.photo.url}}">
+            <img src="{{nano.photo.url}}" title="{{nano.title}}" alt="{{nano.about}}">
         {% endif %}
         <div class="about">{{nano.about|truncatewords:15}}</div>
     </a>
