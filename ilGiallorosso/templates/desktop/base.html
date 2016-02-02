@@ -5,12 +5,16 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="icon" type="image/png" href="https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/img/general/minilogo.png" />
     <meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
-    <meta name="description" content="El mejor sitio de noticias de la AS Roma, f&uacute;tbol y fichajes">  
-    <meta name="keywords" content="As Roma, F&uacute;tbol, Fichajes, Noticias, Totti, Partidos">
-    <link rel="canonical" href="http://www.noticiasroma.com">
-    {% block link_next %}
-      
-    {% endblock%}
+{% block meta_seo %}
+    <meta name="description" content="El mejor sitio de noticias del club AS Roma de habla hispana, f&uacute;tbol italiano y fichajes. Fanaticos de Francesco Totti, news, rumores, imagenes.">
+    <meta name="keywords" content="As Roma, F&uacute;tbol Italiano, Fichajes, Noticias AS Roma, Totti, Partidos, Resultados">
+    {% comment %}
+    <link rel="canonical" href="http://www.noticiasroma.com/">
+    {% endcomment %}
+{% endblock %}
+{% block link_next %}{% endblock%}
+{% block link_prev %}{% endblock %}
+
 {% block open_graph_tags %}
     <meta property="og:title" content="noticiasroma.com">
     <meta property="og:type" content="website">

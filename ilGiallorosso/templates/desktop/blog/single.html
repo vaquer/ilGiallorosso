@@ -2,8 +2,15 @@
 {% load static from staticfiles %}
 {% load tz %}
 
-
 {% block title_page %}{{post.title}} {% endblock %}
+
+{% block meta_seo %}
+<meta name="description" content="{{post.about|truncatechars:140}}">
+<meta name="keywords" content="Noticias Roma, {{post.get_top_tags}}">
+{% comment %}
+<link rel="canonical" href="http://www.noticiasroma.com/{{post.get_absolute_utl">
+{% endcomment %}
+{% endblock %}
 
 {% block css_links %}
     <link rel="stylesheet" type="text/css" href="{% static "css/ilg-single.css" %}">
@@ -70,8 +77,8 @@
         </div>
         <div class="body-article">
             <span class="tags">{{post.get_top_tags}}</span>
-            <h2 class="title-entry">{{post.title}}</h2>
-            {% localtime on %} 
+            <h1 class="title-entry">{{post.title}}</h1>
+            {% localtime off %} 
             <span class="time">{{post.date}}</span>
             {% endlocaltime %}
         </div>

@@ -201,3 +201,9 @@
     <link rel="next" href="http://www.noticiasroma.com/p/{{page.next_page_number}}/">
 {% endif %}
 {% endblock%}
+
+{% block link_prev %}
+{% if page.has_previous %}
+    <link rel="next" href="http://www.noticiasroma.com/p/{{page.previous_page_number}}/">
+{% endif %}   
+{% endblock %}
