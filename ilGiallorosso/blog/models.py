@@ -70,9 +70,14 @@ class Entry(models.Model):
         try:
             tags_top = [tag.tag for tag in self.get_tags()[:4]]
         except:
-            return ''
+            return None
 
-        return ', '.join(tags_top)
+        return tags_top
+
+    def get_top_tags_string(self):
+        tags_top = self.get_top_tags()
+
+        return ', '.join(tags_top) if tags_top else ''
 
     def has_photo(self):
         try:
@@ -175,6 +180,14 @@ class Author(models.Model):
 
     def __unicode__(self):
         return u'{0}'.format(self.user.get_full_name())
+
+    def get_author_info(self):
+        author_info = cache.get('author_info_{0}'.format(self.id))
+
+        if not author_info:
+            author_info = self.user
+            cache.set('author_info_{0}'.format(self.id), author_info, 60 * 60)
+        return author_info
 
     def get_entries_of_this_author(self):
         return Entry.objects.filter(active=True, author=self).order_by('-order')

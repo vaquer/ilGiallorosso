@@ -6,7 +6,7 @@
 
 {% block meta_seo %}
 <meta name="description" content="{{post.about|truncatechars:140}}">
-<meta name="keywords" content="Noticias Roma, {{post.get_top_tags}}">
+<meta name="keywords" content="Noticias Roma, {{post.get_top_tags_string}}">
 {% comment %}
 <link rel="canonical" href="http://www.noticiasroma.com/{{post.get_absolute_utl">
 {% endcomment %}
@@ -32,7 +32,7 @@
     <meta name="twitter:site" content="https://twitter.com/NoticiASRoma">
     <meta name="twitter:creator" content="https://twitter.com/NoticiASRoma">
     <meta name="twitter:title" content="{{post.title}}">
-    <meta name="twitter:description" content="{{post.get_top_tags}}">
+    <meta name="twitter:description" content="{{post.get_top_tags_string}}">
     {% if post.has_photo %}
     <meta name="twitter:image:src" content="{{post.photo.url}}">
     {% endif %}
@@ -76,7 +76,11 @@
                 </div>
         </div>
         <div class="body-article">
-            <span class="tags">{{post.get_top_tags}}</span>
+            <span class="tags">
+                {% for tag in post.get_tags %}
+                    <a href="{{tag.get_absolute_url}}">{{tag.tag}}</a>
+                {% endfor %}
+            </span>
             <h1 class="title-entry">{{post.title}}</h1>
             {% localtime off %} 
             <span class="time">{{post.date}}</span>
@@ -91,7 +95,7 @@
                     {% if post.author.photo %}
                         <img src="{{post.author.photo.url}}">
                     {% endif %}
-                    <p>Editado por: <strong>{{post.author.user.user.get_full_name}}</strong></p>
+                    <p>Editado por: <strong>{{post.author.get_author_info.user.get_full_name}}</strong></p>
                 </div>
                 {% if post.author.short_about %}
                      <div class="bio-author">{{post.author.short_about|safe}}</div>

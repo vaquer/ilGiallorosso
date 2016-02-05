@@ -27,14 +27,16 @@ from autocomplete_light.compat import url, urls
 
 from blog.models import Tag
 from blog.forms import EntryFormAutocomplete
-from blog.views import EntrySitemap
+from blog.views import EntrySitemap, TagSiteMap, CategorySiteMap
 
 admin.site.site_header = 'Noticias Roma - Administracion'
 # admin.site.index_title = 'Casas Atlas | Administracion'
 admin.site.site_title = 'Noticias Roma'
 
 sitemaps = {
-    'entries': EntrySitemap
+    'entries': EntrySitemap,
+    'tags': TagSiteMap,
+    'categories': CategorySiteMap
 }
 
 urlpatterns = [

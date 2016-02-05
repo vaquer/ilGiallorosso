@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.core.cache import cache
 from django.contrib.sitemaps import Sitemap
 from django.utils import timezone
-from .models import Entry, Category
+from .models import Entry, Category, Tag
 from fifastats.scrapper import FifaScrapper
 
 # Create your views here.
@@ -30,11 +30,13 @@ def view_category(request, slug=None, page=1):
     return render(request, "desktop/blog/category.html", {"paginator": post_paginator, "page": post_page, "p": page, "page_top_post": post_page.object_list[:3], "category": category_model, "fifa": sc})
 
 
-def view_tag(request, tag=None, page=1):
-    post_models = cache.get('entries_tag_v2_{0}'.format(tag))
+def view_tag(request, slug=None, page=1):
+    tag = get_object_or_404(Tag, slug=slug)
+
+    post_models = cache.get('entries_tag_v3_{0}'.format(slug))
     if not post_models:
-        post_models = Entry.objects.select_related('author', 'category').filter(tags__slug__in=[tag], active=True)
-        cache.set('entries_tag_{0}'.format(category_model.id), post_models, 60*15)
+        post_models = Entry.objects.select_related('author', 'category').filter(tags__slug__in=[slug], active=True).order_by('-order')
+        cache.set('entries_tag_v3_{0}'.format(slug), post_models, 60 * 15)
 
     post_paginator = Paginator(post_models, 20)
 
@@ -43,7 +45,7 @@ def view_tag(request, tag=None, page=1):
     except EmptyPage:
         raise Http404
 
-    return render(request, "desktop/blog/tag.html", {"paginator": post_paginator, "page": post_page})
+    return render(request, "desktop/blog/tag.html", {"paginator": post_paginator, "page": post_page, "page_top_post": post_page.object_list[:3], 'tag': tag})
 
 
 def view_single_post(request, year=None, month=None, slug=None):
@@ -94,3 +96,34 @@ class EntrySitemap(Sitemap):
             cache.set('site_map_entries', site_map_entries, 60 * 15)
 
         return site_map_entries
+
+
+class TagSiteMap(Sitemap):
+    changefreq = "daily"
+    priority = 1.0
+    lastmod = timezone.now()
+
+    def items(self):
+        site_tags = cache.get('site_tags')
+
+        if not site_tags:
+            site_tags = Tag.objects.all().order_by('tag')
+            cache.set('site_tags', site_tags, 60 * 60)
+
+        return site_tags
+
+
+class CategorySiteMap(Sitemap):
+    changefreq = "daily"
+    priority = 1.0
+    lastmod = timezone.now()
+
+    def items(self):
+        site_categories = cache.get('site_categories')
+
+        if not site_categories:
+            site_categories = Category.objects.all().order_by('name')
+            cache.set('site_categories', site_categories, 60 * 60)
+
+        return site_categories
+
