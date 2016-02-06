@@ -20,7 +20,8 @@ INSTALLED_APPS = (
     'boto',
     'storages',
     'autocomplete_light',
-    # 'debug_toolbar',
+    'debug_toolbar',
+    'compressor',
     # 'awesome_gallery',
 )
 
@@ -35,7 +36,7 @@ CACHES = {
 }
 
 MIDDLEWARE_CLASSES = (
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.gzip.GZipMiddleware',
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -88,6 +89,7 @@ AWS_STORAGE_MEDIA_BUCKET_NAME = conf['aws']['media-bucket']
 AWS_STATIC_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
 AWS_MEDIA_DOMAIN = 's3-us-west-2.amazonaws.com/{0}'.format(AWS_STORAGE_MEDIA_BUCKET_NAME)
 AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
 
 from django.utils import timezone
 
@@ -107,10 +109,18 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
 )
 
-STATIC_URL = 'https://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
+STATIC_URL = 'http://{0}.s3.amazonaws.com/'.format(AWS_STORAGE_STATIC_BUCKET_NAME)
 STATICFILES_STORAGE = 'ilGiallorosso.custom_storages.CustomStaticStorage'
+
+# django-compressor conf
+COMPRESS_ENABLED = True
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_URL = STATIC_URL
+COMPRESS_ROOT = os.path.join(BASE_DIR, '../static/')
+AWS_STORAGE_BUCKET_NAME = AWS_STORAGE_STATIC_BUCKET_NAME
 
 
 # MEDIA CONFIGURATION

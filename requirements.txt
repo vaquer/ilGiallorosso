@@ -11,5 +11,6 @@ python-mimeparse==0.1.4
 django-storages==1.1.8
 django-redis-cache==1.6.5
 django-autocomplete-light==2.3.2
+django-compressor==2.0
 -e git+ssh://git@github.com/vaquer/django-awesome-gallery.git#egg=django-awesome-gallery
 -e git+git://github.com/etianen/django-watson.git#egg=django-watson

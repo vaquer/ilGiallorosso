@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,8 +7,8 @@
     <link rel="icon" type="image/png" href="https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/img/general/minilogo.png" />
     <meta id="meta" name="viewport" content="width=device-width; initial-scale=1.0" />
 {% block meta_seo %}
-    <meta name="description" content="El mejor sitio de noticias del club AS Roma de habla hispana, f&uacute;tbol italiano y fichajes. Fanaticos de Francesco Totti, news, rumores, imagenes.">
-    <meta name="keywords" content="As Roma, F&uacute;tbol Italiano, Fichajes, Noticias, roma, Totti, Partidos, Resultados, Serie A, Calcio">
+    <meta name="description" content="El mejor sitio de noticias del club As Roma de habla hispana, f&uacute;tbol italiano, fichajes, imagenes, rumores y estadisticas.">
+    <meta name="keywords" content="Noticias, As Roma, Fichajes, Estadisticas, F&uacute;tbol Italiano, roma, Totti, Partidos, Resultados, Serie A, Calcio">
     {% comment %}
     <link rel="canonical" href="http://www.noticiasroma.com/">
     {% endcomment %}
@@ -30,16 +31,13 @@
     <meta name="twitter:description" content="F&uacute;tbol: Noticias, Roma, Totti">
 {% endblock %}
     <title>{% block title_page %}noticasroma.com {% endblock %}</title>
+    {% compress css %}
     <link rel="stylesheet" type="text/css" href="{% static "css/normalize.css" %}">
-    {% comment %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-base.css" %}">
-    {% endcomment %}
     <link rel="stylesheet" type="text/css" href="{% static "css/ilg-base.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/ilg-theme.css" %}">
     {% block css_links %}{% endblock %}
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
+    {% endcompress %}
+
     <script type="text/javascript">
     (function(p,u,s,h){
         p._pcq=p._pcq||[];
@@ -130,10 +128,14 @@
       </footer>
     </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static "js/abitgone/carousel/abitgone-carousel.js" %}"></script>
+    {% compress js%}
+    {% comment %}
+     <script type="text/javascript" src="{% static "js/abitgone/carousel/abitgone-carousel.js" %}"></script>
+    {% endcomment %}
     <script type="text/javascript" src="{% static "js/gallery/lib/require/require-min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/lib/underscore/underscore-min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/lib/backbone/backbone-min.js" %}"></script>
+    {% endcompress %}
     <script>window.twttr = (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0],
         t = window.twttr || {};
@@ -229,5 +231,8 @@
                 new Nav().render();
             });
     </script>
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
 </body>
 </html>
