@@ -1,16 +1,16 @@
 {% load tz %}
-<div class="entry article-box mini" style="margin-top: 5px; {% if forloop.counter == 3 %} margin-left: 40px; {% endif %}">
+<div class="entry article-box mini" style="margin-top: 5px; {% if forloop.counter == 3 %} margin-left: 40px; {% endif %}" itemscope>
     <a href="{{mini.get_absolute_url}}" class="pic-article">
     	{% if mini.photo %}
-	        <img src="{{mini.photo.url}}" title="{{mini.title}}" alt="{{mini.about}}">    		
+	        <img itemprop="imagen" src="{{mini.photo.url}}" title="{{mini.title}}" alt="{{mini.about}}">    		
     	{% endif %}
-        <div class="about">{{mini.about}}</div>
+        <div class="about" class="about">{{mini.about}}</div>
     </a>
     <div class="body-article">
-        <span class="tags">{{mini.get_top_tags_string}}</span>
-        <h2 class="title-entry">{{mini.title}}</h2>
+        <span class="tags" itemprop="categorias">{{mini.get_top_tags_string}}</span>
+        <h2 itemprop="titulo" class="title-entry">{{mini.title}}</h2>
         {% localtime on %} 
-        <span class="time">{{mini.date}}</span>
+        <span itemprop="fecha" class="time">{{mini.date}}</span>
         {% endlocaltime %}
     </div>
 </div>

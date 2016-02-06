@@ -1,16 +1,16 @@
 {% load tz %}
-<div class="entry article-box big">
+<div class="entry article-box big" itemscope>
     <a href="{{post.get_absolute_url}}" class="pic-article">
         {% if post.photo %}
-            <img src="{{post.photo.url}}" title="{{post.title}}" alt="{{post.about}}">            
+            <img itemprop="imagen" src="{{post.photo.url}}" title="{{post.title}}" alt="{{post.about}}">            
         {% endif %}
-        <div class="about">{{post.about}}</div>
+        <div class="about" itemprop="encabezado">{{post.about}}</div>
     </a>
     <div class="body-article">
-        <span class="tags">{{post.get_top_tags_string}}</span>
-        <h2 class="title-entry">{{post.title}}</h2>
+        <span class="tags" itemprop="categorias">{{post.get_top_tags_string}}</span>
+        <h2 itemprop="titulo" class="title-entry">{{post.title}}</h2>
         {% localtime on %} 
-        <span class="time">{{post.date}}</span>
+        <span itemprop="fecha" class="time">{{post.date}}</span>
         {% endlocaltime %}
     </div>
 </div>
