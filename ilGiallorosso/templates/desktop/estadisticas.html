@@ -3,11 +3,14 @@
 {% load cache %}
 {% block title_page %}Noticas Roma - Estadisticas y resultados de la Serie A 2015{% endblock %}
 {% block css_links %}
-{% comment %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-home.css" %}">
-{% endcomment %}
-<link rel="stylesheet" type="text/css" href="{% static "css/ilg-stats-desktop.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/ilg-stats-desktop.css" %}">
 {% endblock %}
+
+{% block meta_seo %}
+    <meta name="description" content="Estadisticas y resultados de la Roma en Serie A TIM 2015">
+    <meta name="keywords" content="roma noticias, as roma estadisticas, f&uacute;tbol estadisticas, roma partidos">
+{% endblock %}
+
 {% block content %}
     <div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -32,6 +35,8 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
     </div>
+    <h1>Estadisticas Serie A TIM 2015</h1>
+
     {% include "desktop/boxes/last_match.html" with match=fifa.get_last_match %}
     {% include "desktop/boxes/next_match.html" with match=fifa.get_next_mtach %}
     {% include "desktop/boxes/stats_s_a_tim.html" with is_isolated_stats=True %}
