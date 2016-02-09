@@ -5,11 +5,20 @@
             <thead>
                 <tr class="tblHeader">
                     <th class="marker"></th>
-                    <th class="rnk noHover tbHeader"><acronym title="Ranking">Pos</acronym></th>
-                    <th class="team noHover tbHeader"><acronym title="Team">Equipo</acronym></th>
-                    <th class="mp tbHeader"><acronym title="Played">PJ</acronym></th>
-                    <th class="pts tbHeader"><acronym title="Points">Pts</acronym></th>
-                    <th title=" " class="diff noHover tbHeader"> </th></tr>
+                    <th class="rnk noHover tbHeader"><acronym title="Posicion">Pos</acronym></th>
+                    <th class="team noHover tbHeader"><acronym title="Equipo">Equipo</acronym></th>
+                    <th class="mp tbHeader"><acronym title="Jugados">PJ</acronym></th>
+                    {% if is_isolated_stats %}
+                    <th class="noHover tbHeader wi mp"><acronym title="Ganados">G</acronym></th>
+                    <th class="noHover tbHeader dr mp"><acronym title="Empates">E</acronym></th>
+                    <th class="noHover tbHeader lo mp"><acronym title="Perdidos">P</acronym></th>
+                    <th class="noHover tbHeader gf mp"><acronym title="Goles a Favor">GF</acronym></th>
+                    <th class="noHover tbHeader ga mp"><acronym title="Goles en Contra">GC</acronym></th>
+                    <th class="noHover tbHeader dg mp"><acronym title="Diferencia de Goles">+/-</acronym></th>
+                    {% endif %}
+                    <th class="pts tbHeader"><acronym title="Puntos">Pts</acronym></th>
+                    <th title=" " class="diff noHover tbHeader"> </th>
+                    </tr>
             </thead>
             <tbody>
                 {% for team in fifa.get_stats.italy %}
@@ -18,6 +27,14 @@
                         <td class="rnk">{{team.rnk}}</td>
                         <td class="team">{{team.team}}</td>
                         <td class="mp">{{team.mp}}</td>
+                        {% if is_isolated_stats %}
+                        <td class="wi mp">{{team.wi}}</td>
+                        <td class="dr mp">{{team.dr}}</td>
+                        <td class="lo mp">{{team.lo}}</td>
+                        <td class="gf mp">{{team.gf}}</td>
+                        <td class="ga mp">{{team.ga}}</td>
+                        <td class="dg mp">{{team.dg}}</td>
+                        {% endif %}
                         <td class="pts">{{team.pts}}</td>
                         <td class="diff">{{team.diff|safe}}</td>
                     </tr>

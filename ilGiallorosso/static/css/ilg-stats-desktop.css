@@ -1,0 +1,48 @@
+/* desktop */
+@media only screen and (min-width: 900px){
+main.content-site .body-content .side-bar .box-side{padding: 15px;}
+main.content-site .body-content .side-bar .box-side .title-box{text-transform: uppercase; font-size: 15; padding-bottom: 5px; border-bottom: 1px solid #D8D8D8; font-weight: bold; font-size: 22px;}
+
+main.content-site .body-content .box-side.matches{ margin-left: 5px; border-top: 10px solid #DABB1D; text-align: center; width: 455px; float: left;}
+main.content-site .body-content .box-side.matches .body-box{display: inline-block; margin-top: 10px; text-align: center;}
+main.content-site .body-content .box-side.matches .home{ float: left; width: 100px; font-size: 20px; margin-top: 10px;}
+main.content-site .body-content .box-side.matches .score{ float: left; margin-left: 5px; width: 100px; font-size: 30px; font-weight: bold; margin-top: 20px;}
+main.content-site .body-content .box-side.matches .away{ float: left; margin-left: 5px; width: 100px; font-size: 20px; margin-top: 10px;}
+
+.stats-side-bar {width: 920px; float: left;}
+.stats-side-bar table{margin-top: 5px; width: 100%; margin: 5px auto;}
+}
+
+/* iPad Pro */
+@media only screen and (max-width: 899px){
+main.content-site .body-content .side-bar .box-side{padding: 15px;}
+main.content-site .body-content .side-bar .box-side .title-box{text-transform: uppercase; font-size: 15; padding-bottom: 5px; border-bottom: 1px solid #D8D8D8; font-weight: bold; font-size: 22px;}
+
+main.content-site .body-content .box-side.matches{ margin-left: 5px; border-top: 10px solid #DABB1D; text-align: center; width: 400px; float: left;}
+main.content-site .body-content .box-side.matches .body-box{display: inline-block; margin-top: 10px; text-align: center;}
+main.content-site .body-content .box-side.matches .home{ float: left; width: 100px; font-size: 20px; margin-top: 10px;}
+main.content-site .body-content .box-side.matches .score{ float: left; margin-left: 5px; width: 100px; font-size: 30px; font-weight: bold; margin-top: 20px;}
+main.content-site .body-content .box-side.matches .away{ float: left; margin-left: 5px; width: 100px; font-size: 20px; margin-top: 10px;}
+
+.stats-side-bar {width: 760px; float: left;}
+.stats-side-bar table{margin-top: 5px; width: 100%; margin: 5px auto;}
+}
+
+
+/* Tablets and smartphones */
+@media only screen and (max-width: 760px){
+main.content-site .body-content .side-bar .box-side{padding: 15px;}
+main.content-site .body-content .side-bar .box-side .title-box{text-transform: uppercase; font-size: 15; padding-bottom: 5px; border-bottom: 1px solid #D8D8D8; font-weight: bold; font-size: 22px;}
+
+main.content-site .body-content .box-side.matches{ margin: 5px 0; border-top: 10px solid #DABB1D; text-align: center; width: 350px; }
+main.content-site .body-content .box-side.matches .body-box{display: inline-block; margin-top: 10px; text-align: center;}
+main.content-site .body-content .box-side.matches .home{ float: left; width: 100px; font-size: 20px; margin-top: 10px;}
+main.content-site .body-content .box-side.matches .score{ float: left; margin-left: 5px; width: 100px; font-size: 30px; font-weight: bold; margin-top: 20px;}
+main.content-site .body-content .box-side.matches .away{ float: left; margin-left: 5px; width: 100px; font-size: 20px; margin-top: 10px;}
+
+.stats-side-bar {width: 350px; float: left;}
+.stats-side-bar table{margin-top: 5px; width: 100%; margin: 5px auto;}
+.stats-side-bar table tbody tr td.mp { padding-left: 2px;}
+.stats-side-bar table thead tr th.mp { padding-left: 2px;}
+
+}

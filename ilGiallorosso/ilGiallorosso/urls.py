@@ -41,6 +41,7 @@ sitemaps = {
 
 urlpatterns = [
     #url(r'^__debug__/', include(debug_toolbar.urls)),
+    url(r'^estadisticas/$', 'ilGiallorosso.views.stats', name='estadisticas'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'TagAutocomplete/', include('autocomplete_light.urls'), name='autocomplete'),
     url(r'^admin/', include(admin.site.urls)),
@@ -49,6 +50,5 @@ urlpatterns = [
     # url(r'^', include('awesome_gallery.urls')),
     url(r'^$', 'ilGiallorosso.views.home'),
     url(r'^p/(?P<p>[0-9]+)/$', 'ilGiallorosso.views.home'),
-    url(r'^single/$', 'ilGiallorosso.views.single_test')
 ]
 # ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

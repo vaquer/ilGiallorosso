@@ -36,6 +36,6 @@ def home(request, p=1):
     return render(request, 'desktop/home.html', {'fifa': sc, 'oldie_entries': oldie_entries, 'top_entries': top_entries, 'page': page, 'paginator': paginator_object})
 
 
-def single_test(request):
+def stats(request):
     sc = FifaScrapper()
-    return render(request, 'desktop/single_test.html', {'fifa': sc})
+    return render(request, 'desktop/estadisticas.html', {'fifa': sc})
