@@ -138,13 +138,11 @@
     main.content-site .body-content .entry.article-box.big .pic-article img {width: 340px;}
     main.content-site .body-content .entry.article-box.big .pic-article .about {bottom: 99px; height: 85px; width: 330px; padding: 5px; opacity: 0.80; font-size: 18px;}
 
-    main.content-site .body-content .entry.article-box.big .author {color: #343434; background-color: #f2f2f2; padding: 10px 50px 0px 25px; overflow: auto;}
+    main.content-site .body-content .entry.article-box.big .author {color: #343434; background-color: #f2f2f2; padding: 10px 50px 0px 25px; overflow: auto; height: 190px;}
     main.content-site .body-content .entry.article-box.big .author .content-author {width: 100%; height: 100px;}
     main.content-site .body-content .entry.article-box.big .author .content-author .profile-author {width: 100%; height: 104px; display: block; float: left;}
     main.content-site .body-content .entry.article-box.big .author .content-author .profile-author img {padding: 0 15px; -webkit-border-radius: 50%; -moz-border-radius: 50%; border-radius: 50%; float: left; width: 80px; height: 80px;}
     main.content-site .body-content .entry.article-box.big .author .content-author .profile-author p {padding-top: 12px;}
-    main.content-site .body-content .entry.article-box.big .author .content-author .bio-author {display: none;}
-
 
     main.content-site .body-content .side-bar{ display: none;}
 
