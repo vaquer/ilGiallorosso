@@ -23,7 +23,7 @@
     main.content-site .body-content .entry.article-box.big .author .content-author .bio-author {border-left: 2px #e3e3e3 solid; padding-left: 25px; font-size: 12px; overflow: hidden;  text-align: justify; /* margin-top: 20px; */ /* float: left; */ width: 490px; display: inline-block; margin-top: 10px;}
 
 
-     main.content-site .body-content .entry.article-box.big .content-article .fb-post{margin: 0 auto; width: 500px; display: block !important;}
+    main.content-site .body-content .entry.article-box.big .content-article .fb-post{margin: 0 auto; width: 500px; display: block !important;}
 
 
     main.content-site .body-content .side-bar{ width: 350px; float: left; margin-top: 100px;}
@@ -175,3 +175,4 @@
 
 .twitter-tweet {margin: 5px auto !important;}
 iframe.instagram-media { margin: 15px auto !important; }
+main.content-site .body-content .entry.article-box.big .content-article { font-size: 18px; }
