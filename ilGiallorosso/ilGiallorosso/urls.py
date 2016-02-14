@@ -28,6 +28,7 @@ from autocomplete_light.compat import url, urls
 from blog.models import Tag
 from blog.forms import EntryFormAutocomplete
 from blog.views import EntrySitemap, TagSiteMap, CategorySiteMap
+from blog.blogFeed import LastEntriesRss
 
 admin.site.site_header = 'Noticias Roma - Administracion'
 # admin.site.index_title = 'Casas Atlas | Administracion'
@@ -41,6 +42,7 @@ sitemaps = {
 
 urlpatterns = [
     #url(r'^__debug__/', include(debug_toolbar.urls)),
+    url(r'^entries/feed/$', LastEntriesRss()),
     url(r'^estadisticas/$', 'ilGiallorosso.views.stats', name='estadisticas'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     url(r'TagAutocomplete/', include('autocomplete_light.urls'), name='autocomplete'),
