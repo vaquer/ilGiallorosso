@@ -1,7 +1,7 @@
 {% extends "desktop/base.html" %}
 {% load static from staticfiles %}
 {% block title_page %}
-noticiasroma.com - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
+Noticias Roma - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
 {% endblock %}
 
 {% block meta_seo %}
