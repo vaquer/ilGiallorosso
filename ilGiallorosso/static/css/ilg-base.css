@@ -13,6 +13,7 @@ header.header-site .header-content .nav ul.menu li.menu-element {float: left; bo
 header.header-site .header-content .nav ul.menu li.menu-element.last {border-right: 1px solid #D8D8D8;}
 header.header-site .header-content .nav ul.menu li.menu-element a {text-decoration: none !important; color: #A0A0A0; font-weight: bold !important; padding: 2px 30px !important; transition: background-color 0.3s , color 0.3s;}
 header.header-site .header-content .nav ul.menu li.menu-element a:hover {background-color: #A53241; color: #DABB1D;}
+header.header-site .header-content .fb_iframe_widget{display: inline-block;  position: relative; bottom: 35px;  right: 94%;}
 /* Configuracion del menu principal */
 #hamburger { position: absolute; top: 25px; left: 25px; height: 20px; width: 30px; cursor: pointer; opacity: 1; transition: opacity 0.5s; }
 #hamburger:hover {opacity: 0.70;}
@@ -99,3 +100,5 @@ main.content-site .border {min-height: 45px; padding: 16px 0;}
     .banner_320x100_B { display: block; margin:0 auto; width: 330px; text-align: center;}
     .banner_300x250_A { display: block; margin: 0 auto; width: 320px;}
 }
+
+.article-box .fb-like {float: right;}
