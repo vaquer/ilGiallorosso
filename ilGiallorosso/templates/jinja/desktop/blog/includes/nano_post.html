@@ -1,0 +1,15 @@
+<div class="nano-post" itemscope>
+    <a href="{{nano.get_absolute_url()}}" class="pic-article">
+        {% if nano.photo %}
+            <img itemprop="imagen" src="{{nano.photo.url}}" title="{{nano.title}}" alt="{{nano.about}}">
+        {% endif %}
+        <div class="about">{{nano.about|truncatewords(15)}}</div>
+    </a>
+    <div class="body-article">
+        <span class="tags" itemprop="categorias">{{nano.get_top_tags_string()}}</span>
+        <h2 itemprop="titulo" class="title-entry">{{nano.title}}</h2>
+        {# {% localtime on %}  #}
+        <span itemprop="fecha" class="time">{{nano.date|date("l d \d\e F Y")}}</span>
+        {# {% endlocaltime %} #}
+    </div>
+</div>

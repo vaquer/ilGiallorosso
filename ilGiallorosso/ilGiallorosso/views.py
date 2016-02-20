@@ -33,9 +33,9 @@ def home(request, p=1):
 
     top_entries = page.object_list[:3]
     oldie_entries = page.object_list[3:]
-    return render(request, 'desktop/home.html', {'fifa': sc, 'oldie_entries': oldie_entries, 'top_entries': top_entries, 'page': page, 'paginator': paginator_object})
+    return render(request, 'desktop/home.html', {'settings': settings, 'fifa': sc, 'oldie_entries': oldie_entries, 'top_entries': top_entries, 'page': page, 'paginator': paginator_object})
 
 
 def stats(request):
     sc = FifaScrapper()
-    return render(request, 'desktop/estadisticas.html', {'fifa': sc})
+    return render(request, 'desktop/estadisticas.html', {'fifa': sc, "settings": settings})

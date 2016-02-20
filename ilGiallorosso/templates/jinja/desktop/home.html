@@ -1,0 +1,210 @@
+{% extends "desktop/base.html" %}
+{% block title_page %}Noticias Roma - Fútbol club As Roma, estadisticas, fichajes{% endblock %}
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{{ static("css/ilg-home.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ static("css/abitgone/abitgone-jquery-plugins.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ static("css/abitgone/abitgone-carousel.css") }}">
+{% endblock %}
+{% block content %}
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single_top -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="2985538119"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="banner banner_320x100_A">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 320x100_A -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:100px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="4076188115"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    {% if page.number != 1 %}
+        <div class="paginator">
+            <div class="text_paginator">
+                {% if page.has_previous() %}
+                    <a href="/p/{{page.previous_page_number()}}/"> << Anterior</a>
+                {% endif %}
+                P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                {% if page.has_next() %}
+                    <a href="/p/{{page.next_page_number()}}/">Siguiente >></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="top-entries">
+        {% for post in top_entries  %}
+
+            {% if loop.index == 1 %}
+                {% include "desktop/blog/includes/big_home_post.html" %}
+            {% else %}
+                {% with mini=post %}
+                    {% include "desktop/blog/includes/mini_home_post_top.html" %}
+                {% endwith %}
+            {% endif %}
+
+        {% endfor %}
+    </div>
+
+    <div class="home-media">
+        {#
+        <div class="ilg-galllery media-box article-box">
+            <div class="header-box-media"><h2 class="medi">Galerias Romanistas</h2></div>
+            <div class="body-box-media">
+                <div class="ilg-galeries carousel-container carousel-horizontal carousel-ready carousel-item-4" data-carousel data-carousel-style="horizontal" data-carousel-timer="6000" data-carousel-pagelist tabindex="0">
+                    <div class="carousel-items" data-carousel-items style="height: 100%; width: 500%">
+                        <div id="roma-1" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://www.fullmatchesandshows.com/wp-content/uploads/2015/08/Barcelona-vs-Roma-Highlights-Full-Match-Gamper.png)">
+                            <a href="#" class="title">Un titulo de imagen</a>
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-2" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://gazzettaworld.gazzetta.it/wp-content/uploads/2015/09/Roma-v-Barcelona-3.jpg?v=20150916225830)">
+                        <a href="#" class="title">Un titulo de imagen</a>
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-3" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(https://heavyeditorial.files.wordpress.com/2015/09/gettyimages-488594210.jpg?quality=65&strip=all&w=780&strip=all)">
+                        <a href="#" class="title">Un titulo de imagen</a>
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-4" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://www4.pictures.zimbio.com/gi/Luis+Suarez+Roma+v+FC+Barcelona+UEFA+Champions+A8wY0cZ0KrSl.jpg)">
+                            <a href="#" class="title">Un titulo de imagen</a>
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ilg-tube media-box article-box">
+            <div class="header-box-media"><h2 class="medi">Roma TV</h2></div>
+            <div class="body-box-media">
+                <div class="ilg-galeries carousel-container carousel-horizontal carousel-ready carousel-item-4" data-carousel data-carousel-style="horizontal" data-carousel-timer="6000" data-carousel-pagelist tabindex="0">
+                    <div class="carousel-items" data-carousel-items style="height: 100%; width: 500%">
+                        <div id="roma-1" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://gazzettaworld.gazzetta.it/wp-content/uploads/2015/09/Roma-v-Barcelona-3.jpg?v=20150916225830)">
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-2" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://www.fullmatchesandshows.com/wp-content/uploads/2015/08/Barcelona-vs-Roma-Highlights-Full-Match-Gamper.png)">
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-3" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(https://heavyeditorial.files.wordpress.com/2015/09/gettyimages-488594210.jpg?quality=65&strip=all&w=780&strip=all)">
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                        <div id="roma-4" class="carousel-item" data-carousel-item style="width: 450px; background-image: url(http://www4.pictures.zimbio.com/gi/Luis+Suarez+Roma+v+FC+Barcelona+UEFA+Champions+A8wY0cZ0KrSl.jpg)">
+                            <a data-carousel-pager class="carousel-pager pager-prev" href="#"><span>Ant</span></a>
+                            <a data-carousel-pager class="carousel-pager pager-next" href="#"><span>Sig</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        #}
+    </div>
+    
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="7555338514"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="second-content" style="margin-top: 15px;">
+        <div class="side-bar">
+            <div class="entry article-box banner banner_350_A" >
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- 300x250_A -->
+                    <ins class="adsbygoogle"
+                         style="display:inline-block;width:300px;height:250px"
+                         data-ad-client="ca-pub-8597849363536541"
+                         data-ad-slot="7415737718"></ins>
+                    <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            {% cache 950 "fifa-stats" fifa %}
+            {% with match=fifa.get_next_mtach()  %}
+                {% include "desktop/boxes/next_match.html" %}
+            {% endwith %}
+            {% include "desktop/boxes/twitter_box.html" %}
+            {% include "desktop/boxes/stats_s_a_tim.html" %}
+            {% with match=fifa.get_last_match() %}
+                {% include "desktop/boxes/last_match.html" %}
+            {% endwith %}
+            {% include "desktop/boxes/facebook_box.html" %}
+            {% endcache %}
+
+        </div>
+        <div class="banner banner_728 banner_728_B">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 728x_90_B -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:728px;height:90px"
+                 data-ad-client="ca-pub-8597849363536541"
+                 data-ad-slot="5376294513"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="banner banner_320x100_B">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 320x100_B -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:320px;height:100px"
+                     data-ad-client="ca-pub-8597849363536541"
+                     data-ad-slot="5457019716"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>  
+        <div class="oldie-entries">
+            {% for mini in oldie_entries %}               
+                {% include "desktop/blog/includes/mini_home_post_footer.html" %}               
+            {% endfor %}
+            <div class="paginator">
+                <div class="text_paginator">
+                    {% if page.has_previous() %}
+                        <a href="/p/{{page.previous_page_number()}}/"> << Anterior</a>
+                    {% endif %}
+                    P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                    {% if page.has_next() %}
+                        <a href="/p/{{page.next_page_number()}}/">Siguiente >> </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block link_next %}
+{% if page.has_next() %}
+    <link rel="next" href="http://www.noticiasroma.com/p/{{page.next_page_number()}}/">
+{% endif %}
+{% endblock%}
+
+{% block link_prev %}
+{% if page.has_previous() %}
+    <link rel="next" href="http://www.noticiasroma.com/p/{{page.previous_page_number()}}/">
+{% endif %}   
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "desktop/base.html" %}s
+
+{% block title_page %}Noticias Roma | {{post.title}} {% endblock %}
+
+{% block meta_seo %}
+<meta name="description" content="{{post.about|truncatechars(140)}}">
+<meta name="keywords" content="Noticias Roma, {{post.get_top_tags_string()}}">
+{#
+<link rel="canonical" href="http://www.noticiasroma.com/{{post.get_absolute_utl">
+#}
+{% endblock %}
+
+{% block css_links %}
+    <link rel="stylesheet" type="text/css" href="{{ static("css/ilg-single.css")}}">
+{% endblock %}
+
+{% block open_graph_tags %}
+    <meta property="fb:app_id" content="165375850495698">
+    <meta property="og:title" content="{{post.title|striptags}}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://www.noticiasroma.com/{{post.get_absolute_url()}}"/>
+    {% if post.has_photo %}
+        <meta property="og:image" content="{{post.photo.url}}"/>
+    {% endif %}
+    <meta property="og:site_name" content="noticiasroma.com"/>
+    <meta property="og:description" content="{{post.about|striptags}}"/>
+{% endblock %}
+{% block twitter_sumarycards_tags %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:creator" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:title" content="{{post.title}}">
+    <meta name="twitter:description" content="{{post.get_top_tags_string}}">
+    {% if post.has_photo %}
+    <meta name="twitter:image:src" content="{{post.photo.url}}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single_top -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="2985538119"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="banner banner_320x100_A">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 320x100_A -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:100px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="4076188115"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="entry article-box big" itemscope>
+        <a href="" class="pic-article">
+            {% if post.has_photo() %}
+                <img itemprop="imagen" src="{{post.photo.url}}" title="{{post.title}}" alt="{{post.about}}">
+            {% endif %}
+            <div class="about" itemprop="encabezado">{{post.about}}</div>
+        </a>
+        <div class="social" style="margin-top: 5px;">
+                <div class="fb-like" data-href="http://www.noticiasroma.com{{post.get_absolute_url()}}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                <div style="margin-top: 10px;">
+                    <a class="twitter-share-button" href="https://www.noticiasroma.com{{post.get_absolute_url()}}">Tweet</a>
+                </div>
+        </div>
+        <div class="body-article">
+            <span class="tags">
+                {% for tag in post.get_tags() %}
+                    <a href="{{tag.get_absolute_url()}}">{{tag.tag}}</a>
+                {% endfor %}
+            </span>
+            <h1 class="title-entry" itemprop="titulo">{{post.title}}</h1>
+            {# {% localtime off %}  #}
+            <span itemprop="fecha" class="time">{{post.date}}</span>
+            {# {% endlocaltime %} #}
+        </div>
+        <div class="content-article">
+            {{post.text|safe}}
+        </div>
+        <div class="author">
+            <div class="content-author">
+                <div class="profile-author">
+                    {% if post.author.photo %}
+                        <img src="{{post.author.photo.url}}">
+                    {% endif %}
+                    <p>Editado por: <strong itemprop="autor">{{post.author.get_author_info().user.get_full_name()}}</strong></p>
+                </div>
+                {% if post.author.short_about %}
+                     <div class="bio-author">{{post.author.short_about|safe}}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div style="margin-top: 15px;">
+            <a class="twitter-follow-button" href="https://twitter.com/NoticiASRoma"> Follow @NoticiASRoma</a>
+        </div>
+        <div class="comments">
+            <div class="fb-comments" data-href="http://www.noticiasroma.com{{post.get_absolute_url()}}" data-width="100%" data-numposts="5"></div>
+        </div>
+    </div>
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="7555338514"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="banner banner_300x250_A">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 300x250_Amobile -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:250px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="7029654516"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="side-bar">
+        {% include "desktop/boxes/facebook_box.html" %}        
+        <div class="entry article-box banner" >
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- 300x250_A -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-8597849363536541"
+                 data-ad-slot="7415737718"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        {% include "desktop/boxes/stats_s_a_tim.html" %}
+        {% include "desktop/boxes/twitter_box.html" %}
+    </div>
+    <div class="more-info">
+        {% with  match=fifa.get_next_mtach()  %}
+            {% include "desktop/boxes/next_match.html" %}
+        {% endwith %}
+        <div class="entry article-box more-posts">
+            <div class="title-box">Ultimas Noticias</div>
+            <div class="body-box">
+                {% for nano in post.get_related_entries() %}
+                    {% include "desktop/blog/includes/nano_post.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="banner banner_320x100_B">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 320x100_B -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:320px;height:100px"
+                     data-ad-client="ca-pub-8597849363536541"
+                     data-ad-slot="5457019716"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        <div class="twitter_wall">
+            <a class="twitter-grid" data-limit="5" href="https://twitter.com/_pyfrank/timelines/688863036321337344">romanoticias</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>            
+        </div>
+
+        {% with match=fifa.get_last_match() %}
+            {% include "desktop/boxes/last_match.html"%}
+        {% endwith %}
+{% endblock %}

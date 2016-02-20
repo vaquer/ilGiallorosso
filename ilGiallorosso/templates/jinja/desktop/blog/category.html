@@ -1,0 +1,127 @@
+{% extends "desktop/base.html" %}
+{% block title_page %}
+Noticias Roma - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
+{% endblock %}
+
+{% block meta_seo %}
+<meta name="description" content="{{category.short_description|truncatechars(140)}}">
+<meta name="keywords" content="Noticias Roma, {{category.name}}">
+{#
+<link rel="canonical" href="http://www.noticiasroma.com/{{category.get_absolute_url}}">    
+#}
+{% endblock %}
+
+{% block css_links %}
+<link rel="stylesheet" type="text/css" href="{{static("css/ilg-home.css")}}">
+{% endblock %}
+
+{% block content %}
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single_top -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="2985538119"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+    <div class="title-category">
+        <h1>{{category.name}}</h1>
+    </div>
+
+    {% if page.number != 1 %}
+        <div class="paginator">
+            <div class="text_paginator">
+                {% if page.has_previous() %}
+                    <a href="{{category.get_absolute_url()}}p/{{page.previous_page_number()}}/"> << Anterior</a>
+                {% endif %}
+                P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                {% if page.has_next() %}
+                    <a href="{{category.get_absolute_url()}}p/{{page.next_page_number()}}/">Siguiente >></a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="top-entries">
+        {% for post in page_top_post %}
+            {% if loop.index == 1 %}
+                {% include "desktop/blog/includes/big_home_post.html" %}
+            {% else %}
+                {% with mini=post %}
+                    {% include "desktop/blog/includes/mini_home_post_top.html" %}
+                {% endwith %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="banner banner_728">
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- 728x90_single -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:728px;height:90px"
+             data-ad-client="ca-pub-8597849363536541"
+             data-ad-slot="7555338514"></ins>
+        <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <div class="second-content" style="margin-top: 100px; display: inline-block;">
+        <div class="side-bar">
+            <div class="entry article-box banner banner_350_A" >
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- 300x250_A -->
+                <ins class="adsbygoogle"
+                     style="display:inline-block;width:300px;height:250px"
+                     data-ad-client="ca-pub-8597849363536541"
+                     data-ad-slot="7415737718"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+            {% include "desktop/boxes/facebook_box.html" %}
+            {% with match=fifa.get_next_mtach() %}
+                {% include "desktop/boxes/next_match.html" %}
+            {% endwith %}
+            {% include "desktop/boxes/stats_s_a_tim.html" %}
+            {% include "desktop/boxes/twitter_box.html" %}
+            {% with match=fifa.get_last_match() %}
+                {% include "desktop/boxes/last_match.html" %}
+            {% endwith %}
+        </div>
+        <div class="oldie-entries">
+            {% for mini in page.object_list %}
+                {% if loop.index > 3 %}
+                    {% include "desktop/blog/includes/mini_home_post_footer.html" %}
+                {% endif %}
+            {% endfor %}
+
+            <div class="paginator">
+                <div class="text_paginator">
+                    {% if page.has_previous() %}
+                        <a href="{{category.get_absolute_url()}}p/{{page.previous_page_number()}}/"> << Anterior</a>
+                    {% endif %}
+                    P&aacute;gina {{page.number}} de {{page.paginator.num_pages}}.
+                    {% if page.has_next() %}
+                        <a href="{{category.get_absolute_url()}}p/{{page.next_page_number()}}/">Siguiente >></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block link_next %}
+{% if page.has_next() %}
+    <link rel="next" href="http://www.noticiasroma.com/{{category.get_absolute_url()}}p/{{page.next_page_number()}}/">
+{% endif %}
+{% endblock%}
+
+{% block link_prev %}
+{% if page.has_previous() %}
+    <link rel="next" href="http://www.noticiasroma.com/{{category.get_absolute_url()}}p/{{page.previous_page_number()}}/">
+{% endif %}   
+{% endblock %}

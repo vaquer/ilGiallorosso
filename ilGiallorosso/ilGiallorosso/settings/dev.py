@@ -3,6 +3,8 @@ from .base import *
 
 ALLOWED_HOSTS = ['www.noticiasroma.com', 'dev.noticiasroma.com']
 
+DEBUG = True
+
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -22,6 +24,7 @@ INSTALLED_APPS = (
     'autocomplete_light',
     'debug_toolbar',
     'compressor',
+    'django_jinja',
     # 'awesome_gallery',
 )
 
@@ -65,6 +68,62 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+    },
+    {
+        "BACKEND": "django_jinja.backend.Jinja2",
+        "DIRS": [os.path.join(BASE_DIR, '../templates/jinja')],
+        "APP_DIRS": True,
+        "OPTIONS": {
+        	'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            # Match the template names ending in .html but not the ones in the admin folder.
+            "match_extension": ".html",
+            "match_regex": r"^(?!admin/).*",
+            "app_dirname": "templates",
+
+            # Can be set to "jinja2.Undefined" or any other subclass.
+            "undefined": None,
+
+            "newstyle_gettext": True,
+            # "tests": {
+            #     "mytest": "path.to.my.test",
+            # },
+            # "filters": {
+            #     "myfilter": "path.to.my.filter",
+            # },
+            # "globals": {
+            #     "myglobal": "path.to.my.globalfunc",
+            # },
+            # "constants": {
+            #     "foo": "bar",
+            # },
+            "extensions": [
+                "jinja2.ext.do",
+                "jinja2.ext.loopcontrols",
+                "jinja2.ext.with_",
+                "jinja2.ext.i18n",
+                "jinja2.ext.autoescape",
+                "django_jinja.builtins.extensions.CsrfExtension",
+                "django_jinja.builtins.extensions.CacheExtension",
+                "django_jinja.builtins.extensions.TimezoneExtension",
+                "django_jinja.builtins.extensions.UrlsExtension",
+                "django_jinja.builtins.extensions.StaticFilesExtension",
+                "django_jinja.builtins.extensions.DjangoFiltersExtension",
+                'compressor.contrib.jinja2ext.CompressorExtension',
+            ],
+            "bytecode_cache": {
+                "name": "default",
+                "backend": "django_jinja.cache.BytecodeCache",
+                "enabled": False,
+            },
+            "autoescape": True,
+            "auto_reload": DEBUG,
+            "translation_engine": "django.utils.translation",
+        }
     },
 ]
 
@@ -152,4 +211,3 @@ IS_MOBILE = False
 #     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
 # }
 
-DEBUG = True

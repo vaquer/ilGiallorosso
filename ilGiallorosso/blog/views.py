@@ -5,6 +5,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.core.cache import cache
 from django.contrib.sitemaps import Sitemap
 from django.utils import timezone
+from django.conf import settings
 from .models import Entry, Category, Tag
 from fifastats.scrapper import FifaScrapper
 
@@ -27,7 +28,7 @@ def view_category(request, slug=None, page=1):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/blog/category.html", {"paginator": post_paginator, "page": post_page, "p": page, "page_top_post": post_page.object_list[:3], "category": category_model, "fifa": sc})
+    return render(request, "desktop/blog/category.html", {"settings": settings, "paginator": post_paginator, "page": post_page, "p": page, "page_top_post": post_page.object_list[:3], "category": category_model, "fifa": sc})
 
 
 def view_tag(request, slug=None, page=1):
@@ -45,7 +46,9 @@ def view_tag(request, slug=None, page=1):
     except EmptyPage:
         raise Http404
 
-    return render(request, "desktop/blog/tag.html", {"paginator": post_paginator, "page": post_page, "page_top_post": post_page.object_list[:3], 'tag': tag})
+    sc = FifaScrapper()
+
+    return render(request, "desktop/blog/tag.html", {"settings": settings, "paginator": post_paginator, "page": post_page, "page_top_post": post_page.object_list[:3], 'tag': tag, "fifa": sc})
 
 
 def view_single_post(request, year=None, month=None, slug=None):
@@ -59,7 +62,7 @@ def view_single_post(request, year=None, month=None, slug=None):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/blog/single.html", {"post": post, "fifa": sc})
+    return render(request, "desktop/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
 
 
 def view_redgol_feed(request):
