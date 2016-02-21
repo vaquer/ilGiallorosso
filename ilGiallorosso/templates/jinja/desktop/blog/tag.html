@@ -1,6 +1,6 @@
 {% extends "desktop/base.html" %}
 {% block title_page %}
-noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
+Noticias Roma - {{tag.tag}}{% if page.number > 1 %} - Pagina {{page.number}} de {{page.paginator.num_pages}}  {% endif %}
 {% endblock %}
 
 {% block meta_seo %}
@@ -9,7 +9,6 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
 {#
 <link rel="canonical" href="http://www.noticiasroma.com/{{category.get_absolute_url}}">    
 #}
-
 {% endblock %}
 
 {% block css_links %}
@@ -17,7 +16,7 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
 {% endblock %}
 
 {% block content %}
-    <div class="banner banner_728">
+    {# <div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 728x90_single_top -->
         <ins class="adsbygoogle"
@@ -27,7 +26,7 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+    </div>#}
     <div class="title-category">
         <h1>{{tag.tag}}</h1>
     </div>
@@ -58,7 +57,7 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
         {% endfor %}
     </div>
 
-    <div class="banner banner_728">
+    {#<div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 728x90_single -->
         <ins class="adsbygoogle"
@@ -68,11 +67,11 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+    </div>#}
 
     <div class="second-content" style="margin-top: 100px; display: inline-block;">
         <div class="side-bar">
-            <div class="entry article-box banner banner_350_A" >
+            {#<div class="entry article-box banner banner_350_A" >
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                 <!-- 300x250_A -->
                 <ins class="adsbygoogle"
@@ -82,7 +81,7 @@ noticiasroma.com - {{tag.name}}{% if page.number > 1 %} - Pagina {{page.number}}
                 <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-            </div>
+            </div>#}
             {% include "desktop/boxes/facebook_box.html" %}
             {% with match=fifa.get_next_mtach() %}
                 {% include "desktop/boxes/next_match.html" %}

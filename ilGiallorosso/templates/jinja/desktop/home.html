@@ -1,12 +1,12 @@
 {% extends "desktop/base.html" %}
-{% block title_page %}Noticias Roma - Fútbol club As Roma, estadisticas, fichajes{% endblock %}
+{% block title_page %}Noticias Roma | Fútbol club As Roma, estadisticas, fichajes{% endblock %}
 {% block css_links %}
 <link rel="stylesheet" type="text/css" href="{{ static("css/ilg-home.css") }}">
 <link rel="stylesheet" type="text/css" href="{{ static("css/abitgone/abitgone-jquery-plugins.css") }}">
 <link rel="stylesheet" type="text/css" href="{{ static("css/abitgone/abitgone-carousel.css") }}">
 {% endblock %}
 {% block content %}
-    <div class="banner banner_728">
+    {#<div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 728x90_single_top -->
         <ins class="adsbygoogle"
@@ -28,7 +28,7 @@
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+    </div>#}
 
     {% if page.number != 1 %}
         <div class="paginator">
@@ -118,7 +118,7 @@
         #}
     </div>
     
-    <div class="banner banner_728">
+    {#<div class="banner banner_728">
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <!-- 728x90_single -->
         <ins class="adsbygoogle"
@@ -128,11 +128,11 @@
         <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-    </div>
+    </div>#}
 
     <div class="second-content" style="margin-top: 15px;">
         <div class="side-bar">
-            <div class="entry article-box banner banner_350_A" >
+            {#<div class="entry article-box banner banner_350_A" >
                 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
                     <!-- 300x250_A -->
                     <ins class="adsbygoogle"
@@ -142,7 +142,7 @@
                     <script>
                     (adsbygoogle = window.adsbygoogle || []).push({});
                 </script>
-            </div>
+            </div>#}
             {% cache 950 "fifa-stats" fifa %}
             {% with match=fifa.get_next_mtach()  %}
                 {% include "desktop/boxes/next_match.html" %}
@@ -156,6 +156,7 @@
             {% endcache %}
 
         </div>
+        {#
         <div class="banner banner_728 banner_728_B">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- 728x_90_B -->
@@ -177,7 +178,7 @@
                 <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-        </div>  
+        </div>  #}
         <div class="oldie-entries">
             {% for mini in oldie_entries %}               
                 {% include "desktop/blog/includes/mini_home_post_footer.html" %}               
