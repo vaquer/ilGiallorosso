@@ -1,7 +1,7 @@
 import os
 from .base import *
 
-ALLOWED_HOSTS = ['www.noticiasroma.com', 'dev.noticiasroma.com']
+ALLOWED_HOSTS = ['www.noticiasroma.com']
 
 DEBUG = False
 
@@ -22,7 +22,7 @@ INSTALLED_APPS = (
     'boto',
     'storages',
     'autocomplete_light',
-    'debug_toolbar',
+    # 'debug_toolbar',
     'compressor',
     'django_jinja',
     # 'awesome_gallery',
