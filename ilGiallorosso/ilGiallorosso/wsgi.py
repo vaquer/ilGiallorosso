@@ -24,6 +24,6 @@ os.environ.setdefault("DJANGO_ILGIALLOROSSO_DB_HOST", confs['general']['db']['ho
 os.environ.setdefault("DJANGO_ILGIALLOROSSO_SECRET_KEY", confs['general']['secretkey'])
 os.environ.setdefault("AWSAccessKeyId", confs['aws']['accesskey'])
 os.environ.setdefault("AWSSecretKey", confs['aws']['secretkey'])
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ilGiallorosso.settings.{0}".format(conf['general']['mode']))
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ilGiallorosso.settings.{0}".format(confs['general']['mode']))
 
 application = get_wsgi_application()
