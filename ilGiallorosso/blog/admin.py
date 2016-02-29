@@ -16,16 +16,6 @@ class EntryAdmin(admin.ModelAdmin):
         ('Categoria', {'fields': ('category', 'tags',)}),
     )
 
-    # class Media:
-    #     js = (
-    #         'https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/js/ckeditor/ckeditor.js',
-    #         'https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/js/admin/textareaentry.js',
-    #     )
-
-    #     css = {
-    #         'ckeditor': ('https://s3-us-west-1.amazonaws.com/static-dev-ilgiallorosso/css/reset_ckeditor.css', )
-    #     }
-
 admin.site.register(Entry, EntryAdmin)
 
 

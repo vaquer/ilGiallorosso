@@ -1,7 +1,7 @@
 import os
 from .base import *
 
-ALLOWED_HOSTS = ['www.noticiasroma.com']
+ALLOWED_HOSTS = ['www.noticiasroma.com', 'dev.noticiasroma.com']
 
 DEBUG = False
 
@@ -22,7 +22,7 @@ INSTALLED_APPS = (
     'boto',
     'storages',
     'autocomplete_light',
-    # 'debug_toolbar',
+    'debug_toolbar',
     'compressor',
     'django_jinja',
     # 'awesome_gallery',
@@ -56,6 +56,19 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, '../templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
     {
         "BACKEND": "django_jinja.backend.Jinja2",
         "DIRS": [os.path.join(BASE_DIR, '../templates/jinja')],
@@ -111,19 +124,6 @@ TEMPLATES = [
             "auto_reload": DEBUG,
             "translation_engine": "django.utils.translation",
         }
-    },
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, '../templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
     },
 ]
 
