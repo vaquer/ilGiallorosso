@@ -43,7 +43,7 @@ class Entry(models.Model):
         if not len(entries):
             return None
 
-        return entries[:5]
+        return entries[:7]
 
     def get_recent_entries(self):
         entries = cache.get('recent_entries_v2_{0}'.format(self.id))
@@ -54,7 +54,7 @@ class Entry(models.Model):
         if not len(entries):
             return None
 
-        return entries[:3]
+        return entries[:4]
 
     def get_tags(self):
         tags = cache.get('tags_of_{0}'.format(self.id))

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US"><head><link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <meta name="description" content="{{post.about|truncatechars(140)}}">
+    <meta name="keywords" content="Noticias Roma, {{post.get_top_tags_string()}}">
+
+    <meta property="fb:app_id" content="165375850495698">
+    <meta property="og:title" content="{{post.title|striptags}}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://www.noticiasroma.com/{{post.get_absolute_url()}}"/>
+    {% if post.has_photo %}
+        <meta property="og:image" content="{{post.photo.url}}"/>
+    {% endif %}
+    <meta property="og:site_name" content="noticiasroma.com"/>
+    <meta property="og:description" content="{{post.about|striptags}}"/>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:creator" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:title" content="{{post.title}}">
+    <meta name="twitter:description" content="{{post.get_top_tags_string}}">
+    {% if post.has_photo %}
+    <meta name="twitter:image:src" content="{{post.photo.url}}">
+    {% endif %}
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700|Roboto:300,400,500,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{static("css/special/main.css")}}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--[if lt IE 9]>
+        <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+    <![endif]-->
+
+    <!-- One Page Module Specific Stylesheet -->
+    <link rel="stylesheet" href="{{ static("css/normalize.css") }}" type="text/css">
+    <link rel="stylesheet" href="{{static("css/special/onepage.css")}}" type="text/css">
+    <!-- / -->
+    <link rel="stylesheet" href="{{static("css/special/et-line.css")}}" type="text/css">
+    <link rel="stylesheet" href="{{static("css/special/fonts.css")}}" type="text/css">
+
+    <!-- External JavaScripts
+    ============================================= -->
+    <script type="text/javascript" src="{{static("js/special/jquery.js")}}"></script><style type="text/css"></style>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>Noticias Roma | {{post.title}}</title>
+
+
+<style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style>
+<style type="text/css">
+    #header.dark.sticky-header.transparent-header #header-wrap:not(.not-dark), #header.dark.sticky-header:not(.transparent-header) #header-wrap:not(.not-dark), #header.dark.transparent-header.floating-header .container, #header.dark.transparent-header.floating-header.sticky-header .container, .dark #header.sticky-header.transparent-header #header-wrap:not(.not-dark), .dark #header.sticky-header:not(.transparent-header) #header-wrap:not(.not-dark), .dark #header.transparent-header.floating-header .container, .dark #header.transparent-header.floating-header.sticky-header .container, .dark .responsive-sticky-header #header-wrap, .responsive-sticky-header.dark #header-wrap {
+    background-color: #580A0A !important;
+}
+</style>
+ <script type="text/javascript">
+    (function(p,u,s,h){
+        p._pcq=p._pcq||[];
+        p._pcq.push(['_currentTime',Date.now()]);
+        s=u.createElement('script');
+        s.type='text/javascript';
+        s.async=true;
+        s.src='https://cdn.pushcrew.com/js/cd7e47e6ca453df9e57a0c8a469e7ff0.js';
+        h=u.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s,h);
+    })(window,document);
+    </script></head>
+
+<body class="stretched side-push-panel device-lg">
+
+    <div class="body-overlay"></div>
+
+    <div id="side-panel" class="dark">
+
+        <div id="side-panel-trigger-close"><a href="#"><i class="icon-line-cross"></i></a></div>
+    </div>
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header
+        ============================================= -->
+        <header id="header" class="full-header transparent-header dark static-sticky" data-sticky-offset="0">
+
+            <div id="header-wrap">
+
+                <div class="container clearfix">
+
+                    <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo">
+                        <a href="index.php" class="standard-logo" data-dark-logo="http://canvashtml-cdn.semicolonweb.com/one-page/images/canvasone-dark.png"></a>
+                        <a href="index.php" class="retina-logo" data-dark-logo="http://canvashtml-cdn.semicolonweb.com/one-page/images/canvasone-dark@2x.png"></a>
+                    </div><!-- #logo end -->
+
+                    <!-- Primary Navigation
+                    ============================================= -->
+                    <nav id="primary-menu">
+
+                        <ul class="one-page-menu sf-js-enabled" data-easing="easeInOutExpo" data-speed="1250" data-offset="65">
+                            <li><a href="/"><div>Home</div></a></li>
+                            <li><a href="/category/serie-a-tim/"><div>Serie A</div></a></li>
+                            <li class=""><a href="/category/champions-league/"><div>Champions League</div></a></li>
+                            <li class=""><a href="/tag/roma-primavera/"><div>Primavera</div></a></li>
+                            <li class=""><a href="/category/mercado-de-fichajes/"><div>Fichajes</div></a></li>
+                            <li><a href="/tag/francesco-totti/"><div>Totti</div></a></li>
+                        </ul>
+
+
+                    </nav><!-- #primary-menu end -->
+
+                </div>
+
+            </div>
+
+        </header><!-- #header end -->
+
+        <!-- Slider
+        ============================================= -->
+        <section id="slider" class="slider-parallax full-screen force-full-screen">
+
+            <div class="full-screen force-full-screen dark section nopadding nomargin noborder ohidden" style="background-size: cover; background-position: 50% 50%; background-image: url('{{post.photo.url}}');">
+
+                <div class="container center">
+                    <div class="vertical-middle ignore-header">
+
+                        <div class="emphasis-title">
+                            <h1>
+                                <span class="text-rotater nocolor" data-separator="|" data-rotate="fadeIn" data-speed="6000">
+                                    <span class="t-rotate t700 font-body opm-large-word"><span class="animated fadeIn">{{post.title}}</span></span>
+                                </span>
+                            </h1>
+                            <p class="lead">{{post.about}}</p>
+                        </div>
+                        <!--  
+                        <a href="#" class="button button-border button-light button-circle" data-scrollto="#section-contact" data-easing="easeInOutExpo" data-speed="1250" data-offset="70">Get in Touch</a>
+                        -->
+                    </div>
+                </div>
+
+                <div class="video-wrap">
+                    <div class="video-overlay" style="background: rgba(0,0,0,0.75);"></div>
+                </div>
+
+            </div>
+
+        </section><!-- #slider end -->
+
+        <!-- Content
+        ============================================= -->
+        <section id="content" style="margin-bottom: 0px;">
+
+            <div class="content-wrap nopadding">
+
+                <div id="section-about" class="justify page-section">
+
+                    <div class="container clearfix">
+
+                        <h2 class="divcenter bottommargin font-body">{{post.about}}</h2>
+
+                        <p class="lead divcenter bottommargin"></p>
+                        <div class="content-article">
+                            {{post.text|safe}}
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <div class="row topmargin-lg divcenter">
+
+                            <div class="col-sm-4 bottommargin divcenter">
+
+                                <div class="team">
+                                    <div class="team-image">
+                                        <img src="http://media-dev-ilgiallorosso.s3.amazonaws.com/blog/authors/photos/MSTB9FZH.jpg" alt="{{post.author.get_author_info().user.get_full_name()}}">
+                                        <div class="team-overlay">
+                                            <div class="team-social-icons">
+                                                <a href="#" class="social-icon si-borderless si-small si-facebook" title="Facebook">
+                                                    <i class="icon-facebook"></i>
+                                                    <i class="icon-facebook"></i>
+                                                </a>
+                                                <a href="#" class="social-icon si-borderless si-small si-twitter" title="Twitter">
+                                                    <i class="icon-twitter"></i>
+                                                    <i class="icon-twitter"></i>
+                                                </a>
+                                                <a href="#" class="social-icon si-borderless si-small si-github" title="Github">
+                                                    <i class="icon-github"></i>
+                                                    <i class="icon-github"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="team-desc team-desc-bg">
+                                        <div class="team-title"><h4>{{post.author.get_author_info().user.get_full_name()}}</h4><span>{{post.author.short_about|safe}}</span></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div id="section-works" class="page-section notoppadding">
+
+                    <div class="section nomargin">
+                        <div class="container clearfix">
+                            <div class="divcenter center">
+                                <h2 class="nobottommargin t300 ls1">Quiza tambien te interese</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <script type="text/javascript">
+
+                        jQuery(window).load(function(){
+
+                            var jQuerycontainer = jQuery('#portfolio');
+
+                            jQuerycontainer.isotope({
+                                transitionDuration: '0.65s',
+                                masonry: {
+                                    columnWidth: jQuerycontainer.find('.portfolio-item:not(.wide)')[0]
+                                }
+                            });
+
+                            jQuery(window).resize(function() {
+                                jQuerycontainer.isotope('layout');
+                                SEMICOLON.portfolio.portfolioDescMargin();
+                            });
+
+                            var t = setTimeout(function(){ SEMICOLON.portfolio.portfolioDescMargin(); }, 200);
+
+                        });
+
+                    </script><!-- Portfolio Script End -->                   
+                    <div id="portfolio" class="portfolio-nomargin portfolio-full portfolio-masonry mixed-masonry clearfix">
+
+                        {% for related in post.get_related_entries() %}
+
+                            <article class="portfolio-item {% if loop.index == 1 or loop.index == 4 or loop.index == 5%}wide{% endif %} " >
+                                <div class="portfolio-image">
+                                    <a href="{{related.get_absolute_url()}}">
+                                        <img src="{{related.photo.url}}" alt="{{related.title}}">
+                                    </a>
+                                    <div class="portfolio-overlay">
+                                        <div class="portfolio-desc">
+                                            <h3><a href="{{related.get_absolute_url()}}">{{related.title}}</a></h3>
+                                            <span><a href="{{related.get_absolute_url()}}">{{related.date}}</a>, <a href="#">{{related.author.get_author_info().user.get_full_name()}}</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        {% endfor %}
+                   </div><!-- #portfolio end -->
+                </div>
+
+                <div id="section-blog" class="page-section">
+
+                    <h2 class="center uppercase t300 ls3 font-body">Ultimas noticias</h2>
+
+                    <div class="section nobottommargin">
+                        <div class="container clearfix">
+
+                            <div class="row topmargin clearfix">
+                                {% for related in post.get_recent_entries() %}
+                                    {% if loop.index < 5 %}
+                                        <div class="ipost col-sm-6 bottommargin clearfix">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="entry-image nobottommargin">
+                                                        <a href="{{related.get_absolute_url()}}"><img src="{{related.photo.url}}" alt="{{related.title}}"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span class="before-heading">{{related.category.name}}</span>
+                                                    <div class="entry-title">
+                                                        <h3 class="t400" style="font-size: 18px;"><a href="{{related.get_absolute_url()}}">{{related.title}}</a></h3>
+                                                    </div>
+                                                    <div class="entry-content">
+                                                        <a href="{{related.get_absolute_url()}}" class="more-link">Enterate <i class="icon-angle-right"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section><!-- #content end -->
+
+        <!-- Footer
+        ============================================= -->
+        <footer id="footer" class="dark noborder">
+
+            <div class="container center">
+                <div class="footer-widgets-wrap">
+
+                    <div class="row divcenter clearfix">
+
+                        <div class="col-md-4">
+
+                            <div class="widget clearfix">
+                                <h4>Sitios de interes</h4>
+
+                                <ul class="list-unstyled footer-site-links nobottommargin">
+                                    <li><a class="menu-nav-enlace-a" href="/estadisticas/">Estadisticas</a></li>
+                                    <li><a class="menu-nav-enlace-a" href="/category/roma-tv/">Roma TV</a></li>
+                                    <li><a class="menu-nav-enlace-a" href="/tag/luciano-spalletti/">Luciano Spalleti</a></li>
+                                    <li><a class="menu-nav-enlace-a" href="/tag/francesco-totti/">Francesco Totti</a></li>
+                                    <li><a class="menu-nav-enlace-a" href="/category/copa-italia/">Copa Italiana</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="widget clearfix">
+                                <h4>Suscr&iacute;bete</h4>
+
+                                <div id="widget-subscribe-form-result" data-notify-type="success" data-notify-msg=""></div>
+                                <form id="widget-subscribe-form" action="../include/subscribe.php" role="form" method="post" class="nobottommargin" novalidate="novalidate">
+                                    <input type="email" id="widget-subscribe-form-email" name="widget-subscribe-form-email" class="form-control input-lg not-dark required email" placeholder="Tu dirección de correo" aria-required="true">
+                                    <button class="button button-border button-circle button-light topmargin-sm" type="submit">Suscr&iacute;bete Ahora</button>
+                                </form>
+                                <script type="text/javascript">
+                                    $("#widget-subscribe-form").validate({
+                                        submitHandler: function(form) {
+                                            $(form).find('.input-group-addon').find('.icon-email2').removeClass('icon-email2').addClass('icon-line-loader icon-spin');
+                                            $(form).ajaxSubmit({
+                                                target: '#widget-subscribe-form-result',
+                                                success: function() {
+                                                    $(form).find('.input-group-addon').find('.icon-line-loader').removeClass('icon-line-loader icon-spin').addClass('icon-email2');
+                                                    $('#widget-subscribe-form').find('.form-control').val('');
+                                                    $('#widget-subscribe-form-result').attr('data-notify-msg', $('#widget-subscribe-form-result').html()).html('');
+                                                    SEMICOLON.widget.notifications($('#widget-subscribe-form-result'));
+                                                }
+                                            });
+                                        }
+                                    });
+                                </script>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="widget clearfix">
+                                <h4>Contacto</h4>
+
+                                <p class="lead">Francisco Vaquero </br>akura11.tt@gmail.com </p>
+                                <p class="lead">Fabrizio Perez </br>akura11.tt@gmail.com </p>
+
+                                <div class="center topmargin-sm">
+                                    <a href="#" class="social-icon inline-block noborder si-small si-facebook" title="Facebook">
+                                        <i class="icon-facebook"></i>
+                                        <i class="icon-facebook"></i>
+                                    </a>
+                                    <a href="#" class="social-icon inline-block noborder si-small si-twitter" title="Twitter">
+                                        <i class="icon-twitter"></i>
+                                        <i class="icon-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-icon inline-block noborder si-small si-github" title="Github">
+                                        <i class="icon-github"></i>
+                                        <i class="icon-github"></i>
+                                    </a>
+                                    <a href="#" class="social-icon inline-block noborder si-small si-pinterest" title="Pinterest">
+                                        <i class="icon-pinterest"></i>
+                                        <i class="icon-pinterest"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="copyrights">
+                <div class="container center clearfix">
+                    Copyright NoticiasRoma 2016 | All Rights Reserved
+                </div>
+            </div>
+
+        </footer><!-- #footer end -->
+
+    </div><!-- #wrapper end -->
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="{{static("js/special/functions.js")}}"></script>
+</body></html>

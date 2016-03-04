@@ -62,7 +62,7 @@ def view_single_post(request, year=None, month=None, slug=None):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
+    return render(request, "desktop/special_post.html" if post.top else "desktop/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
 
 
 def view_redgol_feed(request):
