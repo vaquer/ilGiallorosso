@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django.core.cache import cache
 from community.models import UserGiallorosso
+from .thumbr_io import thumbrio
 # from watson import register as watson_register
 
 
@@ -38,7 +39,7 @@ class Entry(models.Model):
         entries = cache.get('relate_entries_v2_{0}'.format(self.id))
         if not entries:
             entries = Entry.objects.select_related('author', 'category').filter(tags__in=self.tags.all(), active=True).exclude(slug=self.slug).order_by('-date').distinct()
-            cache.set('relate_entries_v2_{0}'.format(self.id), entries, 60 * 60)
+            cache.set('relate_entries_v2_{0}'.format(self.id), entries, 60 * 5)
 
         if not len(entries):
             return None
@@ -49,12 +50,15 @@ class Entry(models.Model):
         entries = cache.get('recent_entries_v2_{0}'.format(self.id))
         if not entries:
             entries = Entry.objects.select_related('author', 'category').filter(active=True).exclude(slug=self.slug).order_by('-date')
-            cache.set('recent_entries_v2_{0}'.format(self.id), entries, 60 * 60)
+            cache.set('recent_entries_v2_{0}'.format(self.id), entries, 60 * 5)
 
         if not len(entries):
             return None
 
         return entries[:4]
+
+    def get_thumb(self, size='700x350'):
+        return thumbrio(self.photo.url, size, thumb_name="{0}.png".format(self.slug))
 
     def get_tags(self):
         tags = cache.get('tags_of_{0}'.format(self.id))

@@ -1,0 +1,17 @@
+{% for post in oldie_entries %}
+  <div class="row">
+    <div class="large-6 columns">
+     <p><img src="{{post.get_thumb(size="600x370s")}}" alt="{{post.title}}"></p>
+    </div>
+    <div class="large-6 columns">
+      <h5><a href="{{post.get_absolute_url()}}">{{post.title}}</a></h5>
+      <p>
+          <span><i class="fi-torso"> Por {{post.author.get_author_info().user.get_full_name()}}</i></span>
+          <span><i class="fi-calendar"> {{post.date|date("d/m/Y")}}</i></span>
+          {# <span><i class="fi-comments"> 6 comments</i></span> #}
+      </p>
+      <p>{{post.about}}</p>
+    </div>
+  </div>
+  <hr>
+{% endfor %}

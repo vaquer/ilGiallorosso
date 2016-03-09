@@ -211,3 +211,7 @@ IS_MOBILE = False
 #     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
 # }
 
+THUMBRIO_API_KEY = '08vc45Db5LDVvmK.-e1d'
+THUMBRIO_SECRET_KEY = '5LZBh9eLZmr1W3gmNG5s'
+THUMBRIO_BASE_URLS = ('http://api.thumbr.io/',)
+

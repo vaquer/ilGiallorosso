@@ -1,0 +1,23 @@
+{% if match %}
+  <hr>
+  <div class="row column">
+      <p class="lead">ULTIMO PARTIDO</p>
+      <div class="entry article-box box-side matches" >
+          <div class="row small-up-3">
+            <div class="column text-center home">
+              <img src="{{match.home_logo}}">
+              <h6>{{match.home}}</h6>
+            </div>
+            <div class="column text-center score .s-resText">
+              {{match.res}}
+            </div>
+            <div class="column text-center away">
+              <img src="{{match.away_logo}}">
+              <h6>{{match.away}}</h6>
+            </div>
+          </div>
+      </div>
+      <p class="text-center">{{match.date|date("l d \d\e F Y")}}</p>
+    </div>
+    <hr>
+{% endif %}

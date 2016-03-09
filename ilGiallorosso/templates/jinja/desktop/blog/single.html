@@ -152,10 +152,12 @@
             {% include "desktop/boxes/next_match.html" %}
         {% endwith %}
         <div class="entry article-box more-posts">
-            <div class="title-box">Ultimas Noticias</div>
+            <div class="title-box">Quizá también te interese</div>
             <div class="body-box">
                 {% for nano in post.get_related_entries() %}
-                    {% include "desktop/blog/includes/nano_post.html" %}
+                    {% if loop.index < 6 %}
+                        {% include "desktop/blog/includes/nano_post.html" %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
@@ -177,4 +179,13 @@
         {% with match=fifa.get_last_match() %}
             {% include "desktop/boxes/last_match.html"%}
         {% endwith %}
+
+        <div class="entry article-box more-posts">
+            <div class="title-box">Lo mas reciente</div>
+            <div class="body-box">
+                {% for nano in post.get_recent_entries() %}
+                    {% include "desktop/blog/includes/nano_post.html" %}
+                {% endfor %}
+            </div>
+        </div>
 {% endblock %}
