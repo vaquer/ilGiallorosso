@@ -240,6 +240,13 @@ name: Foundation For Sites
       return t;
     }(document, "script", "twitter-wjs"));
     </script>
+    <script type="text/javascript">
+      jQuery(document).ready(function($) {
+        $.getJSON('http://graph.facebook.com/?ids=https://www.facebook.com/asromanoticias/', function(data){;
+              $(".facebook-likes-page h1").text(data[url].likes);
+          });
+      });
+      </script>
     {% block js_without_compress %}{% endblock %}
   </body>
 </html>

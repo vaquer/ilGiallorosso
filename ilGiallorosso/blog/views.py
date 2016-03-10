@@ -28,7 +28,7 @@ def view_category(request, slug=None, page=1):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/blog/category.html", {"settings": settings, "paginator": post_paginator, "page": post_page, "p": page, "page_top_post": post_page.object_list[:3], "category": category_model, "fifa": sc})
+    return render(request, "desktop/v2/blog/category.html", {"settings": settings, "paginator": post_paginator, "page": post_page, "p": page, "page_top_post": post_page.object_list[:3], "category": category_model, "fifa": sc})
 
 
 def view_tag(request, slug=None, page=1):
@@ -48,7 +48,7 @@ def view_tag(request, slug=None, page=1):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/blog/tag.html", {"settings": settings, "paginator": post_paginator, "page": post_page, "page_top_post": post_page.object_list[:3], 'tag': tag, "fifa": sc})
+    return render(request, "desktop/v2/blog/tag.html", {"settings": settings, "paginator": post_paginator, "page": post_page, 'tag': tag, "fifa": sc})
 
 
 def view_single_post(request, year=None, month=None, slug=None):
@@ -62,7 +62,7 @@ def view_single_post(request, year=None, month=None, slug=None):
 
     sc = FifaScrapper()
 
-    return render(request, "desktop/special_post.html" if post.top else "desktop/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
+    return render(request, "desktop/special_post.html" if post.top else "desktop/v2/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
 
 
 def view_redgol_feed(request):

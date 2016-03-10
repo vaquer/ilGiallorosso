@@ -1,0 +1,17 @@
+<div class="row column">
+    <p class="lead">TE SUGERIMOS</p>
+      {% for post in related_posts %}
+        {% if loop.index < 6 %}
+          <div class="media-object">
+            <div class="media-object-section">
+              <a href="{{post.get_absolute_url()}}">
+                <img class="thumbnail" src="{{post.get_thumb(size="100x100s")}}" alt="{{post.title}}">
+              </a>
+            </div>
+            <div class="media-object-section">
+              <h5>{{post.title}}</h5>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+</div>

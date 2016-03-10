@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 from django.core.cache import cache
@@ -36,9 +37,9 @@ class Entry(models.Model):
 
 
     def get_related_entries(self):
-        entries = cache.get('relate_entries_v2_{0}'.format(self.id))
+        entries = cache.get('relate_entries_v2_{0}'.format(self.id)) if not settings.DEBUG else None
         if not entries:
-            entries = Entry.objects.select_related('author', 'category').filter(tags__in=self.tags.all(), active=True).exclude(slug=self.slug).order_by('-date').distinct()
+            entries = Entry.objects.select_related('author', 'category').filter(category__id=self.category.id, active=True).exclude(slug=self.slug).order_by('-date').distinct()[:7]
             cache.set('relate_entries_v2_{0}'.format(self.id), entries, 60 * 5)
 
         if not len(entries):
@@ -47,15 +48,15 @@ class Entry(models.Model):
         return entries[:7]
 
     def get_recent_entries(self):
-        entries = cache.get('recent_entries_v2_{0}'.format(self.id))
+        entries = cache.get('recent_entries_v2_{0}'.format(self.id)) if not settings.DEBUG else None
         if not entries:
-            entries = Entry.objects.select_related('author', 'category').filter(active=True).exclude(slug=self.slug).order_by('-date')
+            entries = Entry.objects.select_related('author', 'category').filter(active=True).exclude(slug=self.slug).order_by('-date')[:5]
             cache.set('recent_entries_v2_{0}'.format(self.id), entries, 60 * 5)
 
         if not len(entries):
             return None
 
-        return entries[:4]
+        return entries
 
     def get_thumb(self, size='700x350'):
         return thumbrio(self.photo.url, size, thumb_name="{0}.png".format(self.slug))
@@ -160,7 +161,7 @@ class Category(models.Model):
     @property
     def get_permalink(self):
         return mark_safe('<a href="{0}" target="_blank">"{0}"</a>'.format(self.get_absolute_url()))
-    
+
     def save(self):
         # if not self.id:
         slug = slugify(self.name)
@@ -192,6 +193,9 @@ class Author(models.Model):
             author_info = self.user
             cache.set('author_info_{0}'.format(self.id), author_info, 60 * 60)
         return author_info
+
+    def get_thumb(self, size='700x350'):
+        return thumbrio(self.photo.url, size, thumb_name="{0}.png".format(slugify(self.get_author_info().user.get_full_name())))
 
     def get_entries_of_this_author(self):
         return Entry.objects.filter(active=True, author=self).order_by('-order')

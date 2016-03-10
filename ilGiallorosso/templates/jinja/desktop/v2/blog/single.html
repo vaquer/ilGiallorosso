@@ -1,0 +1,119 @@
+{% extends "desktop/v2/base.html" %}
+
+{% block title_page %}As Roma | {{post.title}} {% endblock %}
+
+{% block meta_seo %}
+<meta name="description" content="{{post.about|truncatechars(140)}}">
+<meta name="keywords" content="Noticias Roma, {{post.get_top_tags_string()}}">
+{% endblock %}
+
+{% block open_graph_tags %}
+    <meta property="fb:app_id" content="165375850495698">
+    <meta property="og:title" content="{{post.title|striptags}}"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://www.noticiasroma.com/{{post.get_absolute_url()}}"/>
+    {% if post.has_photo %}
+        <meta property="og:image" content="{{post.photo.url}}"/>
+    {% endif %}
+    <meta property="og:site_name" content="noticiasroma.com"/>
+    <meta property="og:description" content="{{post.about|striptags}}"/>
+{% endblock %}
+{% block twitter_sumarycards_tags %}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:creator" content="https://twitter.com/NoticiASRoma">
+    <meta name="twitter:title" content="{{post.title}}">
+    <meta name="twitter:description" content="{{post.get_top_tags_string}}">
+    {% if post.has_photo %}
+    <meta name="twitter:image:src" content="{{post.photo.url}}">
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class="row column">
+        {% for tag in post.get_tags() %}
+            <a href="{{tag.get_absolute_url()}}" class="button warning hollow">{{tag.tag}}</a>
+        {% endfor %}
+    </div>
+    <div class="row column header_news">
+      <h1>{{post.title}}</h4>
+      <div class="row about">
+        <p>
+            <span class="author_header"><i class="fi-torso"> Por {{post.author.get_author_info().user.get_full_name()}}</i></span>
+            <span class="date_header"><i class="fi-calendar"> {{post.date|date("d/m/Y")}}</i></span>
+            <span class="fb-like" data-href="http%3A%2F%2Fwww.noticiasroma.com{{post.get_absolute_url()|urlencode}}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></span>
+        </p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="large-8 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <img src="{{post.get_thumb(size="800x440s")}}" alt="{{post.title}}">
+                    <h4 style="margin-bottom: 0.8em; font-weight: 700; color: #615C59;">{{post.about}}</h4>
+                </div>
+                <div class="large-12 columns center">
+                    <div class="small-4 columns">
+                        <a href="https://twitter.com/intent/tweet?text={{post.title}}&url=http%3A%2F%2Fwww.noticiasroma.com{{post.get_absolute_url()|urlencode}}&via=NoticiASRoma" class="button" style="width: 100%;" target="_blank">Twitter</a>
+                    </div>
+                    <div class="small-4 columns">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.noticiasroma.com{{post.get_absolute_url()|urlencode}}" class="button"  style="width: 100%; background-color: #296B96;" target="_blank">Facebook</a>
+                    </div>
+                    <div class="small-4 columns">
+                        <a href="" class="button alert" style="width: 100%;">Google+</a>
+                    </div>
+                </div>
+                <div class="large-12 columns" >
+                    {{post.text|safe}}
+                </div>
+                <div class="large-12 columns author_box">
+                    <div class="column callout secondary">
+                        <div class="large-4 columns">
+                        <img src="{{post.author.get_thumb(size="150x150s")}}" class="thumbnail" alt="{{post.author.get_author_info().user.get_full_name()}}">
+                        </div>
+                        <div class="large-8 columns">
+                            <p>Editado por: <strong itemprop="autor">{{post.author.get_author_info().user.get_full_name()}}</strong></p>
+                            {% if post.author.short_about %}
+                                <p class="bio-author">{{post.author.short_about|safe}}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="large-12 columns comments">
+                    <div class="fb-comments" data-href="http://www.noticiasroma.com{{post.get_absolute_url()}}" data-width="100%" data-numposts="5"></div>
+                </div>
+               <hr>
+                <div class="row column">
+                  <h4 style="margin: 0;" class="text-center">ULTIMAS NOTICIAS</h4>
+                </div>
+                <hr>
+                <div class="row small-up-3 medium-up-4 large-up-5 text-center">
+                  {% for post in post.get_recent_entries()  %}
+                     <div class="column {% if loop.index == 4 %} show-for-medium {% elif loop.index == 5%}show-for-large{% else %}no{% endif %}">
+                      <a href="{{post.get_absolute_url()}}">
+                       <div class="image-wrapper overlay-fade-in">
+                          <img class="thumbnail" src="{{post.get_thumb(size="400x370s")}}" alt="{{post.title}}"/>
+                            <p>{{post.title}}</p>
+                        </div>
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
+                {% with match=fifa.get_last_match()  %}
+                    {% include "desktop/v2/boxes/last_match.html" %}
+                {% endwith %}
+            </div>
+        </div>
+        <div class="large-4 columns">
+            <aside>
+            {% include "desktop/v2/boxes/social_links.html" %}
+            {% with related_posts=post.get_related_entries() %}
+                {% include "desktop/v2/boxes/related_posts.html" %}
+            {% endwith %}
+            {% with match=fifa.get_next_mtach()  %}
+                {% include "desktop/v2/boxes/next_match.html" %}
+            {% endwith %}
+            </aside>
+        </div>
+    </div>
+{% endblock %}
