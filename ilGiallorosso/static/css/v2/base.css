@@ -20,3 +20,7 @@ a:hover, a:focus { color: #f47422; }
 .header_news .about .author_header {color: #aaa;}
 .header_news .about .date_header{margin-left: 20px;}
 .author_box { margin-top: 10px; }
+
+.dropdown.menu.medium-horizontal>li.is-dropdown-submenu-parent>a:after {border-color: #f47422 transparent transparent;}
+.title-bar {background-color: #7a1214;}
+.pagination .current {background-color: #7a1214;}
