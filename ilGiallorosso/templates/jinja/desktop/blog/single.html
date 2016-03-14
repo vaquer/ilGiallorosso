@@ -155,7 +155,9 @@
             <div class="title-box">Ultimas Noticias</div>
             <div class="body-box">
                 {% for nano in post.get_related_entries() %}
-                    {% include "desktop/blog/includes/nano_post.html" %}
+                    {% if loop.index < 6 %}
+                        {% include "desktop/blog/includes/nano_post.html" %}
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
