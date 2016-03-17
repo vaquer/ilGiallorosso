@@ -1,0 +1,15 @@
+<div class="row column">
+    <p class="lead">ROMA TV</p>
+      {% for post in roma_tv %}
+      <div class="media-object">
+        <div class="media-object-section">
+          <a href="{{post.get_absolute_url()}}">
+            <img class="thumbnail" src="{{post.get_thumb(size="100x100s")}}" alt="{{post.title}}">
+          </a>
+        </div>
+        <div class="media-object-section">
+          <h5>{{post.title}}</h5>
+        </div>
+      </div>
+      {% endfor %}
+</div>

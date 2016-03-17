@@ -211,3 +211,6 @@ IS_MOBILE = False
 #     'SHOW_TOOLBAR_CALLBACK': custom_show_toolbar,
 # }
 
+THUMBRIO_API_KEY = "{0}".format(conf['thumbrio']['api_key'])
+THUMBRIO_SECRET_KEY = "{0}".format(conf['thumbrio']['secret_key'])
+THUMBRIO_BASE_URLS = ('http://api.thumbr.io/',)

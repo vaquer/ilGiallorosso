@@ -1,0 +1,134 @@
+{% extends "desktop/v2/base.html" %}
+
+{% block css_compress %}
+  <link rel="stylesheet" type="text/css" href="{{static("css/v2/image_hoover.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{static("css/v2/image_hoover_scss.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{static("owl-carousel/owl.carousel.css")}}">
+  <link rel="stylesheet" type="text/css" href="{{static("owl-carousel/owl.theme.css")}}">
+{% endblock %}
+
+{% block js_compress %}
+  <script src="{{static("owl-carousel/owl.carousel.min.js")}}" type="text/javascript"></script>
+{% endblock %}
+
+{% block js_without_compress %}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#owl-noticiasroma").owlCarousel({
+        items: 5,
+        lazyLoad: true,
+        navigation: false,
+        singleItem:true,
+        slideSpeed : 300,
+        autoPlay: 5000
+      });
+    });
+  </script>
+{% endblock %}
+
+{% block content %}
+  {% if page.number == 1 %}
+    <div class="row">
+      <div id="owl-noticiasroma" class="owl-carousel">
+        {% for post in top_entries %}
+          <div class="item">
+            <a href="{{post.get_absolute_url()}}">
+             <div style="content-slide">
+                <img class="lazyOwl" data-src="{{post.get_thumb(size="800x370s")}}" alt="{{post.title}}"/>
+                <div class="small">
+                  <h2>{{post.title}}</h2>
+                  {# <p class="price">{{post.category.name}}</p> #}
+                  {# <a href="{{post.get_absolute_url()}}" class="button">Leer</a> #}
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <hr>
+    <div class="row column">
+      <h4 style="margin: 0;" class="text-center">MERCADO DE FICHAJES</h4>
+    </div>
+    <hr>
+    <div class="row small-up-3 medium-up-4 large-up-5">
+      {% for post in fichajes  %}
+         <div class="column {% if loop.index == 4 %} show-for-medium {% elif loop.index == 5%}show-for-large{% else %}no{% endif %}">
+          <a href="{{post.get_absolute_url()}}">
+           <div class="image-wrapper overlay-fade-in">
+              <img src="{{post.get_thumb(size="400x370s")}}" alt="{{post.title}}"/>
+              <div class="image-overlay-content small">
+                <h2>{{post.title}}</h2>
+                {# <p class="price">{{post.category.name}}</p> #}
+                {# <a href="{{post.get_absolute_url()}}" class="button">Leer</a> #}
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  <hr>
+  <div class="row column">
+    <h4 style="margin: 0;" class="text-center">ULTIMAS NOTICIAS</h4>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="large-8 columns bright">
+      <article>
+        {% if oldie_entries %}
+          {% include "desktop/v2/boxes/large_last_entries.html" %}
+        {% else %}
+          {% with oldie_entries=page.object_list %}
+              {% include "desktop/v2/boxes/large_last_entries.html" %}
+          {% endwith %}
+        {% endif %}
+        <ul class="pagination" role="navigation" aria-label="Pagination">
+            {% if page.has_previous() %}
+              <li>
+              <a href="/p/{{page.previous_page_number()}}/" aria-label="Next page">Anterior <span class="show-for-sr">page</span></a>
+            {% else %}
+              <li class="disabled">
+               Anterior <span class="show-for-sr">page</span>
+            {% endif %}
+          </li>
+          <li class="current">{{page.number}} de {{page.paginator.num_pages}}</li>
+              {% if page.has_next() %}
+              <li>
+              <a href="/p/{{page.next_page_number()}}/" aria-label="Next page">Siguiente <span class="show-for-sr">page</span></a></li>
+            {% else %}
+              <li class="disabled">
+              Siguiente <span class="show-for-sr">page</span>
+            {% endif %}
+        </ul>
+      </article>
+    </div>
+    <div class="large-4 columns">
+      <aside>
+        <hr>
+        {% include "desktop/v2/boxes/social_links.html" %}
+        {% with match=fifa.get_next_mtach()  %}
+          {% include "desktop/v2/boxes/next_match.html" %}
+        {% endwith %}
+        {% include "desktop/v2/boxes/roma_tv.html" %}
+        {% with match=fifa.get_last_match()  %}
+          {% include "desktop/v2/boxes/last_match.html" %}
+        {% endwith %}
+        {% include "desktop/v2/boxes/facebook_box.html" %}
+      </aside>
+    </div>
+  </div>
+{% endblock %}
+
+{% block link_next %}
+{% if page.has_next() %}
+    <link rel="next" href="http://www.noticiasroma.com/p/{{page.next_page_number()}}/">
+{% endif %}
+{% endblock%}
+
+{% block link_prev %}
+{% if page.has_previous() %}
+    <link rel="next" href="http://www.noticiasroma.com/p/{{page.previous_page_number()}}/">
+{% endif %}
+{% endblock%}
