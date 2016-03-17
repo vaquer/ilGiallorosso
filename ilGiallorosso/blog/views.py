@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.conf import settings
 from .models import Entry, Category, Tag
 from fifastats.scrapper import FifaScrapper
+from watson import search as watson
 
 # Create your views here.
 def view_category(request, slug=None, page=1):
@@ -63,6 +64,23 @@ def view_single_post(request, year=None, month=None, slug=None):
     sc = FifaScrapper()
 
     return render(request, "desktop/special_post.html" if post.top else "desktop/v2/blog/single.html", {"settings": settings, "post": post, "fifa": sc})
+
+
+def post_search(request):
+    if not request.method == "POST":
+        raise Http404
+
+    text_search = request.POST['search']
+    post_page = None
+
+    if text_search.strip():
+        search_results = watson.filter(Entry, text_search)
+
+    post_page = search_results.filter(active=True).order_by('-date')[:30]
+
+    sc = FifaScrapper()
+
+    return render(request, "desktop/v2/blog/search.html", {"page": post_page, "text_search": text_search, "settings": settings, "fifa": sc})
 
 
 def view_redgol_feed(request):

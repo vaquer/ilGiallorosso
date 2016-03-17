@@ -98,10 +98,13 @@ name: Foundation For Sites
     </ul>
   </div>
   <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" placeholder="Buscar"></li>
-      <li><button type="button" class="button" style="background-color: #EF7021;">Buscar</button></li>
-    </ul>
+    <form action="/search/" method="POST">
+      {% csrf_token %}
+      <ul class="menu">
+        <li><input type="search" placeholder="Buscar" id="search" name="search" ></li>
+        <li><input type="submit" class="button" style="background-color: #EF7021;" value="Buscar"></input></li>
+      </ul>
+    </form>
   </div>
 </div>
  
@@ -113,9 +116,9 @@ name: Foundation For Sites
         <img src="{{static("img/general/v2/logo_nr_chico.png")}}" alt="NoticiasRoma - El mejor sitio de noticias del club As Roma de habla hispana" style="margin-top: 5px;">
       </a>
     </div>
-      <div class="medium-8 columns">
-    <img src="http://placehold.it/900x175&text=Responsive Ads - ZURB Playground/333" alt="advertisement for deep fried Twinkies">
-  </div>
+    {# <div class="medium-8 columns">
+        <img src="http://placehold.it/900x175&text=Responsive Ads - ZURB Playground/333" alt="advertisement for deep fried Twinkies">
+    </div> #}
   </div>
 </div>
 
@@ -174,7 +177,7 @@ name: Foundation For Sites
 {% endblock %}
 <footer>
   <div class="row expanded callout secondary">
-      <div class="large-4 columns">
+  {#     <div class="large-4 columns">
         <h5>FLICKR IMAGES</h5>
         <div class="row small-up-4">
         <div class="column"><img class="thumbnail" src="http://placehold.it/75" alt="image of space dog"></div>
@@ -199,10 +202,10 @@ name: Foundation For Sites
     <span class="secondary label">R2D2</span>
     </div>
     <div class="large-4 columns">
-      <h5>RANDOM MAG</h5>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti quam voluptatum vel repellat ab similique molestias molestiae ea omnis eos, id asperiores est praesentium, voluptate officia nulla aspernatur sequi aliquam.</p>
+      <h5>AS ROMA</h5>
+      <h6>"La Roma non si discute si ama."</h6>
     </div>
-  </div>
+  </div> #}
   <div class="row expanded">
     <div class="medium-6 columns">
       <ul class="menu">

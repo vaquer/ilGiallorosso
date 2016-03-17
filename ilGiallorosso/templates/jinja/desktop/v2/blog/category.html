@@ -18,23 +18,25 @@ As Roma - {{category.name}}{% if page.number > 1 %} - Pagina {{page.number}} de 
   <div class="row">
     <div class="large-8 columns bright">
       <article>
-          {% with oldie_entries=page.object_list %}
-              {% include "desktop/v2/boxes/large_last_entries.html" %}
-          {% endwith %}      
-        <hr>
+        {% with oldie_entries=page.object_list %}
+            {% include "desktop/v2/boxes/large_last_entries.html" %}
+        {% endwith %}   
         <ul class="pagination" role="navigation" aria-label="Pagination">
-          <li class="disabled">
             {% if page.has_previous() %}
+              <li>
               <a href="/category/{{category.slug}}/p/{{page.previous_page_number()}}/" aria-label="Next page">Anterior <span class="show-for-sr">page</span></a>
             {% else %}
+              <li class="disabled">
                Anterior <span class="show-for-sr">page</span>
             {% endif %}
           </li>
           <li class="current"><span class="show-for-sr">You're on page</span> {{page.number}}</li>
           <li >
             {% if page.has_next() %}
+              <li>
               <a href="/category/{{category.slug}}/p/{{page.next_page_number()}}/" aria-label="Next page">Siguiente <span class="show-for-sr">page</span></a></li>
             {% else %}
+              <li class="disabled">
               Siguiente <span class="show-for-sr">page</span>
             {% endif %}
         </ul>

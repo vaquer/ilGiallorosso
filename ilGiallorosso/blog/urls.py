@@ -11,4 +11,6 @@ urlpatterns = [
     # Tags
     url(r'^tag/(?P<slug>[-_a-zA-Z0-9]+)/$', views.view_tag, name="view_tag"),
     url(r'^tag/(?P<slug>[-_a-zA-Z0-9]+)/p/(?P<page>[0-9]+)/$', views.view_tag, name="view_tag"),
+    #Search
+    url(r'^search/$', views.post_search, name='post_search'),
 ]
