@@ -90,22 +90,24 @@ class FifaScrapper(object):
 
     def set_json_stats(self):
         self.stats = {'italy': []}
-        for tr in self.html_stats.tbody.find_all('tr'):
-            team = {}
-            for td in tr.find_all('td'):
-                team.update({'{0}'.format(td.attrs.get('class')[0]): td.get_text()})
 
-                if td.attrs.get('class')[0] == 'diff':
-                    team['diff'] = '{0}'.format(td.span)
+        if self.html_stats:
+            for tr in self.html_stats.tbody.find_all('tr'):
+                team = {}
+                for td in tr.find_all('td'):
+                    team.update({'{0}'.format(td.attrs.get('class')[0]): td.get_text()})
 
-            team['team'] = team['team'].strip()
-            team['champions'] = True if 't-status-64' in tr.attrs.get('class', ['']) else False
-            team['champions_preliminary'] = True if 't-status-128' in tr.attrs.get('class', ['']) else False
-            team['uefa'] = True if 't-status-1048576' in tr.attrs.get('class', ['']) else False
-            team['uefa_dependency'] = True if 't-status-512' in tr.attrs.get('class', ['']) else False
-            team['relegation'] = True if 't-status-8' in tr.attrs.get('class', ['']) else False
+                    if td.attrs.get('class')[0] == 'diff':
+                        team['diff'] = '{0}'.format(td.span)
 
-            self.stats['italy'].append(team)
+                team['team'] = team['team'].strip()
+                team['champions'] = True if 't-status-64' in tr.attrs.get('class', ['']) else False
+                team['champions_preliminary'] = True if 't-status-128' in tr.attrs.get('class', ['']) else False
+                team['uefa'] = True if 't-status-1048576' in tr.attrs.get('class', ['']) else False
+                team['uefa_dependency'] = True if 't-status-512' in tr.attrs.get('class', ['']) else False
+                team['relegation'] = True if 't-status-8' in tr.attrs.get('class', ['']) else False
+
+                self.stats['italy'].append(team)
 
     def set_matches_html(self, html_soup=None):
         if not html_soup:
