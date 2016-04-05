@@ -113,7 +113,7 @@ class FifaScrapper(object):
         if not html_soup:
             return None
 
-        if html_soup.find("div", {'class': 'm-list'}):
+        if not html_soup.find("div", {'class': 'm-list'}):
             return None
 
         self.html_matches = html_soup.find("div", {'class': 'm-list'}).div
